@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<head>
+
+
+<!--- 01. MOMENTS THEME by pilssken.tumblr.com
+
+base code by animecharacter.tumblr.com
+
+----->
+
+    
+<title>{Title}</title>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+{block:Description}
+<meta name="description" content="{MetaDescription}" />
+{/block:Description}
+
+<meta name="image:background" content=""/>
+<meta name="image:sidebar" content="#fff"/>
+<meta name="color:background" content="#fff"/>
+<meta name="color:font" content="#000"/>
+<meta name="color:link" content="#999"/>
+<meta name="color:link hover" content="#000"/>
+<meta name="color:accent" content="#000"/>
+<meta name="text:font" content="arial"/>
+<meta name="text:font size" content="12px"/>
+<meta name="text:title size" content="150%"/>
+<meta name="text:subtitle size" content="80%"/>
+<meta name="text:sidebar size" content="100px"/>
+<meta name="text:sidebar position" content="-100px"/>
+<meta name="text:sidebar title" content="pilssken"/>
+<meta name="text:sidebar desc" content="keep it short"/>
+<meta name="text:tagline" content="pilssken"/>
+<meta name="text:link 1 url" content=""/>
+<meta name="text:link 1 name" content=""/>
+<meta name="text:link 2 url" content=""/>
+<meta name="text:link 2 name" content=""/>
+<meta name="text:link 3 url" content=""/>
+<meta name="text:link 3 name" content=""/>
+<meta name="text:link 4 url" content=""/>
+<meta name="text:link 4 name" content=""/>
+<meta name="select:sidebar align" content="center" title="center"/>
+<meta name="select:sidebar align" content="left" title="left"/>
+<meta name="select:sidebar align" content="right" title="right"/>
+<meta name="select:link hover underline" content="underline" title="yes"/>
+<meta name="select:link hover underline" content="none" title="no"/>
+<meta name="select:link border" content="1px solid" title="yes"/>
+<meta name="select:link border" content="" title="no"/>
+<meta name="if:Border captions" content=""/>
+<meta name="if:Notecount Footer" content=""/>
+<meta name="if:OP Footer" content=""/>
+<meta name="select:post size" content="300px" title="300px"/>
+<meta name="select:post size" content="400px" title="400px"/>
+<meta name="select:post size" content="500px" title="500px"/>
+<meta name="select:background" content="" title="tile"/>
+<meta name="select:background" content="cover" title="cover"/>
+<meta name="select:scrolling bg" content="" title="scrolling"/>
+<meta name="select:scrolling bg" content="fixed" title="fixed"/>
+        
+<link rel="shortcut icon" href="{Favicon}">
+<link rel="alternate" type="application/rss+xml" href="{RSS}">
+<link rel="stylesheet" href="http://static.tumblr.com/qxrkgx6/RWPmgn2qa/normalize.min.css">
+
+<script src="http://static.tumblr.com/qxrkgx6/LuRmgn2rm/modernizr-2.6.2.min.js"></script>
+        
+<style type="text/css">
+
+
+/* general */
+
+body {
+margin:0px;
+background:{color:background};
+background-image:url('{image:background}');
+background-size:{select:background};
+background-attachment:{select:scrolling bg};
+font-family:{text:font},arial,sans-serif;
+font-size:{text:font size};
+line-height:140%;
+color:{color:font};
+}
+
+p {
+margin:0 0 10px 0;
+padding:0;
+}
+
+pre { 
+white-space: pre-wrap;
+white-space: -moz-pre-wrap;
+white-space: -pre-wrap;
+white-space: -o-pre-wrap;
+word-wrap: break-word;
+}
+
+a {
+color:{color:link};
+text-decoration:none;
+}
+
+a:hover{
+color:{color:link hover};
+text-decoration:{select:link hover underline};
+border-bottom:{select:link border} {select:border style} {color:accent};
+}
+
+li{
+margin-left:-15px;
+}
+
+/* containers */
+
+#wrapper{
+width:600px;
+margin:50px auto;
+}
+
+#sidebar{
+width:{text:sidebar size};
+margin-left:{text:sidebar position};
+position:fixed;
+text-align:{select:sidebar align};
+}
+
+#content{
+width:500px;
+margin-left:200px;
+}
+
+.post{
+width:{select:post size};
+margin:0 0 80px 0;
+overflow:hidden;
+}
+
+#sidebar img, .post img{
+max-width:100%;
+}
+
+#sidebar .sidetitle{
+font-size:{text:title size};
+margin-bottom:5px;
+}
+
+#sidebar .user{
+font-size:{text:subtitle size};
+margin:0px 0 5px 0;
+color:{color:accent};
+}
+
+#sidebar .desc{
+margin:10px 0 0 0;
+}
+
+#nav{
+margin:50px 0 50px 0;
+}
+
+
+/* post content */
+
+.media{
+margin:0 0 10px 0;
+max-width:100%;
+}
+
+.title{
+font-weight:normal;
+font-size:150%;
+margin:0 0 15px 0;
+line-height:120%;
+}
+
+.quote{
+font-weight:normal;
+font-size:130%;
+font-style:italic;
+margin:0 0 10px 0;
+}
+
+.question{
+margin-bottom:10px;
+padding-bottom:10px;
+border-bottom:1px solid {color:accent};
+}
+
+.albumart{
+float:left;
+width:50px;
+margin:0 10px 0 0
+}
+
+blockquote{
+margin:0 0 10px 0; 
+padding:0 0 0 0;
+{block:ifbordercaptions}
+border-left:1px solid {color:accent};
+padding-left:10px;
+margin-left:10px;
+{/block:ifbordercaptions}
+}
+
+/* post footers */
+
+.post .footer{
+margin:10px 0 0 0;
+text-align:left;
+}
+
+.post .tags {
+margin:3px 0 0 0;
+}
+
+.reblog {
+display:block;
+float:right;
+padding-left:5px;
+}
+
+/* post notes */
+
+ol.notes{
+list-style-type:none;
+padding:0;
+margin:0;
+}
+
+ol.notes li.note img{
+width:16px;
+height:16px;
+}
+
+ol.notes li.note{
+margin:0px;
+}
+
+/* touch this and you die */
+#cred {
+overflow:hidden;
+position:fixed;
+z-index:99999;
+bottom:0px;
+padding:10px;
+}
+
+
+
+{CustomCSS}
+</style>
+</head>
+<body>
+
+<div id="cred"><a href="http://pilssken.tumblr.com/">thm</a></div>
+
+<div id="wrapper">
+
+<div id="sidebar">
+
+<div class="sidetitle">{text:sidebar title}</div>
+{block:ifTagline}<div class="user" style="margin:0 0 -5px 0">{text:tagline}</div>{/block:ifTagline}
+<a href="/"><img style="margin:10px 0 0 0;width:{text:sidebar size};" src="{image:sidebar}"></a>
+
+<div class="desc">{text:sidebar desc}</div>
+
+<p style="margin:10px 0 0 0;">
+<a href="{text:link 1 url}">{text:link 1 name}</a>
+<br><a href="{text:link 2 url}">{text:link 2 name}</a>
+<br><a href="{text:link 3 url}">{text:link 3 name}</a>
+<br><a href="{text:link 4 url}">{text:link 4 name}</a>
+</p>
+
+</div>
+
+<div id="content">
+
+{block:Posts}
+
+<!-- {block:NoRebloggedFrom}
+{block:RebloggedFrom}{ReblogParentName}{/block:RebloggedFrom}
+{/block:NoRebloggedFrom} -->
+{block:ContentSource}<!-- {SourceURL}
+{block:SourceLogo}<img src="{BlackLogoURL}"width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" />{/block:SourceLogo}
+{block:NoSourceLogo}{SourceLink}{/block:NoSourceLogo} -->
+{/block:ContentSource}
+
+<div class="post">
+
+{block:Text}
+  {block:Title}
+  <div class="title">{Title}</div>
+  {/block:Title}
+  {Body}
+{/block:Text}
+
+{block:Photo}
+  <div class="media">
+    {LinkOpenTag}
+      <img src="{PhotoURL-500}" alt="{PhotoAlt}"/>
+    {LinkCloseTag}
+  </div>
+  {block:Caption}
+    <div class="caption">{Caption}</div>
+  {/block:Caption}
+{/block:Photo}
+
+{block:Photoset}
+  <div style="max-width:100%" class="media">{Photoset}</div>
+  {block:Caption}
+    <div class="caption">{Caption}</div>
+  {/block:Caption}
+{/block:Photoset}
+
+{block:Quote}
+  <div class="quote">"{Quote}"</div>
+  {block:Source}
+    <div class="quotesource">— {Source}</div>
+  {/block:Source}
+{/block:Quote}
+
+{block:Link}
+  <div class="title"><a href="{URL}">{Name}</a></div>
+  {block:Description}
+    <div class="description">{Description}</div>
+  {/block:Description}
+{/block:Link}
+
+{block:Chat}
+  {block:Title}
+    <div class="title">{Title}</div>
+  {/block:Title}
+  {block:Lines}
+    <div class="{Alt} user_{UserNumber}">
+      {block:Label}<b>{Label}</b>{/block:Label}&nbsp;{Line}
+    </div>
+  {/block:Lines}
+{/block:Chat}
+
+{block:Video}
+  <div class="media">{Video-500}</div>
+  {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+{/block:Video}
+
+{block:Audio}
+  <div class="media">
+    {block:AlbumArt}
+      <div class="albumart"><img src="{AlbumArtURL}"></div>
+    {/block:AlbumArt}
+    {AudioPlayer}
+    {block:TrackName}<b>{TrackName}</b>{/block:TrackName}
+    {block:Artist}{Artist}{/block:Artist}
+    · <span style="color:{color:accent}">{PlayCountWithLabel}</span>
+  </div>
+{block:Caption}{Caption}{/block:Caption}
+{/block:Audio}
+                
+{block:Answer}
+<div class="question"><b>{Asker}</b>: {Question}</div>
+<div class="caption">{Answer}</div>
+{/block:Answer}
+
+
+{block:Date}
+<div class="footer">
+
+<div class="reblog"><a href="{ReblogURL}">reblog</a></div>
+
+{block:RebloggedFrom}<b>{block:IfOPFooter}{ReblogRootTitle}{/block:IfOPFooter}{block:IfNotecountFooter}{notecountwithlabel}{/block:IfNotecountFooter}</b> <a href="{ReblogRootURL}">@{ReblogRootName}</a> · {/block:RebloggedFrom}<a href="{Permalink}">{ShortMonth} {DayOfMonth}</a>
+  
+{block:HasTags}<div class="tags">{block:Tags}<a href="{TagURL}">#{Tag}</a> {/block:Tags}</div>{/block:HasTags}
+</div>
+
+{block:PermalinkPage}
+{block:NoteCount}
+{block:PostNotes}{PostNotes}{/block:PostNotes}
+{/block:NoteCount}
+{/block:PermalinkPage}
+{/block:Date}
+
+</div>
+{/block:Posts}
+
+{block:Pagination}
+<div id="nav">
+{block:PreviousPage}<span style="float:left;"><a href="{PreviousPage}">prev</a></span>{/block:PreviousPage}
+ 
+{block:NextPage}<span style="float:right;"><a href="{NextPage}">next</a></span>{/block:NextPage}
+</div>
+{/block:Pagination}
+
+
+</div>
+</div>
+
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://static.tumblr.com/qxrkgx6/q6kmgn2w2/jquery-1.8.3.min.js"><\/script>')</script>
+
+</body>
+</html>
