@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<head>
+
+<!-----
+
+02. hokusai theme by pilssken.tumblr.com
+base code by animecharacter.tumblr.com
+---
+⇒ base code by animecharacter.tumblr.com
+⇒ custom tooltip script by manos.malihu.gr
+⇒ remove tumblr redirect script by magnusthemes.tumblr.com
+⇒ custom fonts from fonts.google.com
+
+----->
+    
+<title>{Title}</title>
+
+<link href="style-my-tooltips.css" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Lato|Roboto+Mono|Do+Hyeon|Kosugi+Maru|Changa|Cousine|Open-Sans" rel="stylesheet">
+
+<!--image options-->
+<meta name="image:background" content=""/>
+<meta name="image:sidebar" content=""/>
+<!--color options-->
+<meta name="color:background" content="#fff"/>
+<meta name="color:wrapper bg" content="#000"/>
+<meta name="color:font" content="#000"/>
+<meta name="color:link" content="#999"/>
+<meta name="color:link hover" content="#000"/>
+<meta name="color:link backgrounds" content="#000"/>
+<meta name="color:link shadows" content="#000"/>
+<meta name="color:borders" content="#000"/>
+<meta name="color:tooltip bg" content="#000"/>
+<!--text options-->
+<meta name="text:font size" content="12px"/>
+<meta name="text:divider" content="/"/>
+<meta name="text:link 1 url" content=""/>
+<meta name="text:link 1 name" content=""/>
+<meta name="text:link 2 url" content=""/>
+<meta name="text:link 2 name" content=""/>
+<meta name="text:link 3 url" content=""/>
+<meta name="text:link 3 name" content=""/>
+<meta name="text:link 4 url" content=""/>
+<meta name="text:link 4 name" content=""/>
+<!--select options-->
+<meta name="select:font" content="arial" title="arial"/>
+<meta name="select:font" content="verdana" title="verdana"/>
+<meta name="select:font" content="calibri" title="calibri"/>
+<meta name="select:font" content="open sans" title="open sans"/>
+<meta name="select:font" content="ms pgothic" title="ms pgothic"/>
+<meta name="select:font" content="lato" title="lato"/>
+<meta name="select:font" content="consolas" title="consolas"/>
+<meta name="select:font" content="roboto mono" title="roboto mono"/>
+<meta name="select:font" content="kosugi maru" title="kosugi maru"/>
+<meta name="select:font" content="do hyeon" title="do hyeon"/>
+<meta name="select:font" content="changa" title="changa"/>
+<meta name="select:font" content="cousine" title="cousine"/>
+<!--booleans-->
+<meta name="if:link underline" content=""/>
+<meta name="if:link backgrounds" content=""/>
+<meta name="if:link shadows" content=""/>
+<meta name="if:transparent wrapper" content=""/>
+
+<!--style-my-tooltips-->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+<script src="jquery.style-my-tooltips.js"></script>
+<script src="//static.tumblr.com/iuw14ew/VSQma1786/jquery.style-my-tooltips.js"></script>
+<script>
+(function($){
+$(document).ready(function(){
+$("a[title]").style_my_tooltips({
+tip_follows_cursor:true,
+tip_delay_time:0,
+tip_fade_speed:0,
+attribute:"title"
+});
+});
+})(jQuery);
+</script>
+
+<!--remove tumblr redirects by magnusthemes-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+//remove tumblr redirects script by magnusthemes@tumblr 
+$('a[href*="t.umblr.com/redirect"]').each(function(){
+var originalURL = $(this).attr("href").split("?z=")[1].split("&t=")[0];
+var replaceURL = decodeURIComponent(originalURL);
+$(this).attr("href", replaceURL);
+});
+});
+</script>
+
+
+<style>
+
+/* general formatting */
+
+body {
+margin:0;
+padding:0;
+background:{color:background} url("{image:background}");
+background-size:cover;
+background-attachment:fixed;
+font-family:{select:font};
+font-size:{text:font size};
+color:{color:font};
+text-align:justify;
+letter-spacing:1px; }
+
+p {
+margin:0 0 10px 0;
+padding:0; }
+
+pre,code {
+font-family:consolas,monospace;
+margin:10px; 0px 10px 0px;
+padding:5px 10px 5px 10px;
+background-color:rgba(238,238,238,.2);
+word-wrap: break-word; }
+
+a {
+color:{color:link};
+text-decoration:none;
+font-weight:bold;
+{block:ifLinkUnderline}
+text-decoration:underline;
+{/block:ifLinkUnderline} }
+
+a:hover {
+color:{color:link hover};
+{block:ifLinkUnderline}
+text-decoration:underline;
+{/block:ifLinkUnderline} }
+
+blockquote {
+border-left:2px solid {color:borders};
+padding:0px 10px;
+margin:0px 0px 0px 10px; }
+
+ul,ol { margin:10px; }
+
+li {
+margin-left:-15px;
+padding-left:10px; }
+
+#s-m-t-tooltip {
+font-family:{select:font};
+font-size:{text:font size};
+color:{color:text};
+padding:5px 10px;
+margin:15px;
+max-width:300px;
+background-color:{color:tooltip bg};
+border:2px solid {color:borders};
+z-index:999999999999999999999999; }
+
+/* containers */
+
+#wrapper {
+width:500px;
+margin:50px auto;
+{block:ifNotTransparentWrapper}
+background-color:{color:wrapper bg};
+border:3px solid {color:borders};
+padding:15px 15px 15px 15px;
+border-radius:25px;
+{/block:ifNotTransparentWrapper} }
+
+#sidebar {
+text-align:center;
+margin-bottom:50px; }
+
+#content {
+width:500px;
+overflow:hidden; }
+
+.post {
+width:500px;
+margin:0 0 50px 0;
+overflow:hidden; }
+
+.post a {
+{block:ifLinkBackgrounds}
+background-color:{color:link backgrounds};
+{/block:ifLinkBackgrounds}
+{block:ifLinkShadows}
+text-shadow:-1px 0 {color:link shadows}, 0 1px {color:link shadows}, 1px 0 {color:link shadows}, 0 -1px {color:link shadows}, 2px 2px {color:link shadows};
+{/block:ifLinkShadows} }
+
+#pag {
+text-align:center;
+margin:50px 0 10px 0;
+word-spacing:10px; }
+
+#pag a {
+text-decoration:none; 
+{block:ifLinkBackgrounds}
+background-color:{color:link backgrounds};
+border-radius:10px;
+padding:5px 10px 7px 10px;
+{/block:ifLinkBackgrounds}
+{block:ifLinkShadows}
+text-shadow:-1px 0 {color:link shadows}, 0 1px {color:link shadows}, 1px 0 {color:link shadows}, 0 -1px {color:link shadows}, 2px 2px {color:link shadows};
+{/block:ifLinkShadows} }
+
+/* content */
+
+#sidebar img {
+margin-top:20px;
+max-width:100%; }
+
+#sidebar .desc {
+margin:10px 0px 0px 0px; }
+
+#sidebar .links {
+margin:10px 0px 0px 0px;
+{block:ifLinkBackgrounds}
+margin-top:20px;
+{/block:ifLinkBackgrounds} }
+
+#sidebar .links a {
+{block:ifLinkBackgrounds}
+background-color:{color:link backgrounds};
+border-radius:10px;
+padding:5px 10px 7px 10px;
+{/block:ifLinkBackgrounds}
+{block:ifLinkShadows}
+text-shadow:-1px 0 {color:link shadows}, 0 1px {color:link shadows}, 1px 0 {color:link shadows}, 0 -1px {color:link shadows}, 2px 2px {color:link shadows};
+{/block:ifLinkShadows} }
+
+.title {
+font-weight:bold;
+font-size:180%;
+margin:0 0 10px 0; }
+
+.media {
+text-align:center;
+margin:0 0 10px 0; }
+
+.media a {
+{block:ifLinkBackgrounds}
+background-color:{color:wrapper bg};
+{/block:ifLinkBackgrounds} }
+
+video {
+max-width:100%;
+height:auto!important; }
+
+.audio {
+margin-bottom:10px; }
+
+.quote {
+font-weight:normal;
+font-size:16px;
+font-style:italic;
+margin:0 0 10px 0; }
+
+.quotesource {
+margin-top:-10px;
+display:inline; }
+
+.question {
+padding:10px;
+border:2px solid {color:borders};
+margin-bottom:10px; }
+
+/* footers */
+
+.post .footer{
+margin-top:10px;
+text-align:left; }
+
+.post .footer a {
+{block:ifLinkBackgrounds}
+color:{color:link backgrounds};
+background-color:transparent;
+{/block:ifLinkBackgrounds} }
+
+.post .footer a:hover {
+{block:ifLinkBackgrounds}
+color:{color:link hover};
+{/block:ifLinkBackgrounds} }
+
+.post .footer .tags {
+margin-top:5px; }
+
+/* no touchy :^) */
+
+#cred {
+overflow:hidden;
+position:fixed;
+z-index:99999;
+bottom:0px;
+font-family:{select:font};
+font-size:{text:font size};
+padding:7px;
+margin:10px;
+background-color:{color:wrapper bg};
+border:1px solid {color:content border};
+border-radius:5px;
+color:{color:font}; }
+
+{CustomCSS}
+
+</style>
+</head>
+<body>
+
+<div id="cred"><a title="@pilssken" href="http://pilssken.tumblr.com/">thm</a></div>
+
+<div id="wrapper">
+
+<div id="sidebar">
+<img src="{image:sidebar}">
+{block:Description}<p class="desc">{Description}</p>{/block:Description}
+
+<p class="links"><a href="{text:link 1 url}">{text:link 1 name}</a> {block:IfNotLinkBackgrounds}{text:divider}{/block:IfNotLinkBackgrounds} <a href="{text:link 2 url}">{text:link 2 name}</a> {block:IfNotLinkBackgrounds}{text:divider}{/block:IfNotLinkBackgrounds} <a href="{text:link 3 url}">{text:link 3 name}</a> {block:IfNotLinkBackgrounds}{text:divider}{/block:IfNotLinkBackgrounds} <a href="{text:link 4 url}">{text:link 4 name}</a></p>
+
+</div>
+
+<div id="content">
+
+{block:Posts}
+
+<div class="post">
+
+{block:Text}
+  {block:Title}<div class="title">{Title}</div>{/block:Title}
+  {Body}
+{/block:Text}
+
+{block:Photo}
+  <div class="media">{LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}"/>{LinkCloseTag}</div>
+  {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+{/block:Photo}
+
+{block:Photoset}
+  <div class="media">{Photoset-500}</div>
+  {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+{/block:Photoset}
+
+{block:Quote}
+  <div class="quote">"{Quote}"</div>
+  {block:Source}<div class="quotesource">— {Source}</div>{/block:Source}
+{/block:Quote}
+
+{block:Link}
+  <div class="title"><a href="{URL}">{Name} ›</a></div>
+  {block:Description}
+    <div class="description">{Description}</div>
+  {/block:Description}
+{/block:Link}
+
+{block:Chat}
+  {block:Title}
+    <div class="title">{Title}</div>
+  {/block:Title}
+  {block:Lines}
+    <div class="{Alt} user_{UserNumber}">
+      {block:Label}<b>{Label}</b>{/block:Label}&nbsp;{Line}
+    </div>
+  {/block:Lines}
+{/block:Chat}
+
+{block:Video}
+  <div class="media">{Video-500}</div>
+  {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+{/block:Video}
+
+{block:Audio}
+  <div class="audio">{block:AudioEmbed}{AudioEmbed}{/block:AudioEmbed}</div>
+  {block:Caption}<div class="caption">{Caption}</div>{/block:Caption}
+{/block:Audio}
+                
+{block:Answer}
+  <div class="question"><b>{Asker}></b>: {Question}</div>
+  <div class="caption">{Answer}</div>
+{/block:Answer}
+
+
+{block:Date}
+<div class="footer">
+<a {block:ifLinkBackgrounds}style="color:{color:link};background-color:{color:link backgrounds};"{/block:ifLinkBackgrounds} href="{Permalink}">{TimeAgo}{block:NoteCount} ({NoteCountWithLabel}){/block:NoteCount}</a>{block:RebloggedFrom} {text:divider} <a title="{ReblogParentName}" href="{ReblogParentURL}">via</a>{/block:RebloggedFrom}{block:ContentSource} {text:divider} <a title="{ReblogRootName}" href="{SourceURL}">src</a>{/block:ContentSource} {text:divider} <a href="{ReblogURL}">reblog</a>
+{block:HasTags}<p class="tags">{block:Tags}<a href="{TagURL}">#{Tag}</a> {/block:Tags}{/block:HasTags}</p>
+</div>
+
+{block:PermalinkPage}
+{block:NoteCount}
+{block:PostNotes}{PostNotes}{/block:PostNotes}
+{/block:NoteCount}
+{/block:PermalinkPage}
+{/block:Date}
+
+</div>
+{/block:Posts}
+
+{block:Pagination}
+<div id="pag">
+{block:PreviousPage}<a style="float:left;"href="{PreviousPage}">‹ retreat</a>{/block:PreviousPage}
+{block:NextPage}<a style="float:right;"href="{NextPage}">continue ›</a>{/block:NextPage}
+</div>
+{/block:Pagination}
+
+</div>
+</div>
+</div>
+
+</body>
+</html>
