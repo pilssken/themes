@@ -37,7 +37,9 @@ https://www.gnu.org/licenses/gpl-3.0-standalone.html
 <meta name="select:header repeat" content="no-repeat"/>
 <meta name="select:header repeat" content="round"/>
 <!--boolean-->
+<meta name="if:lowercase" content=""/>
 <meta name="if:tags" content=""/>
+<meta name="if:page links" content=""/>
 <!--text options-->
 <meta name="text:title" content="title"/>
 <meta name="text:subtitle" content="subtitle"/>
@@ -142,6 +144,7 @@ font-size:13px;
 color:{color:text};
 line-height:18px;
 letter-spacing:0.3px;
+{block:ifLowercase}text-transform:lowercase;{/block:ifLowercase}
 text-rendering:optimizeLegibility;
 background:{color:background}; }
 
@@ -158,6 +161,13 @@ transition:all 0.3s; }
 
 a[title] {
 cursor:help; }
+
+#headtext a, .caption a, .body a {
+color:{color:accent}; }
+
+.caption a:hover, .body a:hover {
+opacity:0.75;
+transition:all 0.3s; }
 
 h1,h2,h3,h4,h5,h6 {
 margin:15px 0; }
@@ -241,17 +251,22 @@ padding-top:20px; }
 #sidetitle {
 font-size:150%;
 font-weight:bold;
-text-shadow:2px 2px 1px #000; }
+text-shadow:2px 2px 1px #000;
+text-transform:none; }
 
 #subtitle {
+margin-top:3px;
 text-shadow:2px 2px 1px #000; }
 
 #desc {
 display:block;
-margin:25px 0 0 0; }
+margin:22px 0 0 0; }
 
-#desc a {
-color:{color:accent}; }
+#sidelinks {
+margin:10px 0 0 0; }
+
+#sidelinks a {
+margin-right:10px; }
 
 /* content */
 
@@ -296,7 +311,7 @@ width:100%; }
 /* photoset posts */
 
 .photoset-grid {
-margin:0; }
+margin:10px 0; }
 
 [photoset-layout] {
 grid-gap:2px; }
@@ -380,13 +395,6 @@ margin:10px 0;
 padding:0;
 text-align:left;
 word-wrap:break-word; }
-
-.caption a,.body a {
-color:{color:accent}; }
-
-.caption a:hover, .body a:hover {
-opacity:0.75;
-transition:all 0.3s; }
 
 .caption:empty {
 display:none; }
@@ -495,6 +503,9 @@ margin:10px;
 padding:2px 5px;
 position:fixed; }
 
+#credit a {
+color:{color:accent}; }
+
 {CustomCSS}
 </style>
 </head>
@@ -518,6 +529,12 @@ position:fixed; }
       <div id="sidetitle">{text:title}</div>
       <div id="subtitle">{text:subtitle}</div>
       <div id="desc">{text:description}</div>
+      {block:HasPages}{block:ifPageLinks}
+      <div id="sidelinks">
+        {block:AskEnabled}<a href="/ask">{AskLabel}</a>{/block:AskEnabled}
+        {block:Pages}<a href="{URL}">{Label}</a> {/block:Pages}
+      </div>
+      {/block:ifPageLinks}{/block:HasPages}
     </div>
   </div>
 
