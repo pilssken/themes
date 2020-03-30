@@ -40,6 +40,8 @@ https://www.gnu.org/licenses/gpl-3.0-standalone.html
 <meta name="if:lowercase" content=""/>
 <meta name="if:tags" content=""/>
 <meta name="if:page links" content=""/>
+<meta name="if:avatar border" content=""/>
+<meta name="if:avatar bg" content=""/>
 <!--text options-->
 <meta name="text:title" content="title"/>
 <meta name="text:subtitle" content="subtitle"/>
@@ -239,8 +241,13 @@ width:125px;
 height:125px;
 margin-left:15px;
 background:url('{image:avatar}');
+{block:ifAvatarBG}
+background-color:{color:posts};
+{/block:ifAvatarBG}
 background-size:cover;
+{block:ifAvatarBorder}
 border:3px solid {color:posts};
+{/block:ifAvatarBorder}
 border-radius:5px; }
 
 #headtext {
@@ -251,11 +258,13 @@ padding-top:20px; }
 #sidetitle {
 font-size:150%;
 font-weight:bold;
+color:#fff;
 text-shadow:2px 2px 1px #000;
 text-transform:none; }
 
 #subtitle {
 margin-top:3px;
+color:#fff;
 text-shadow:2px 2px 1px #000; }
 
 #desc {
@@ -273,7 +282,8 @@ margin-right:10px; }
 #content {
 width:600px;
 margin:0 auto;
-background:{color:posts}; }
+background:{color:posts};
+border-radius:5px; }
 
 .post {
 box-sizing:border-box;
@@ -318,6 +328,10 @@ grid-gap:2px; }
 
 [photoset-layout] div {
 cursor:pointer; }
+
+.post-content div.npf_row, .post div.npf_row, body div.npf_row {
+margin:0;
+max-width:100%; }
 
 /* video posts */
 
@@ -802,6 +816,7 @@ color:{color:accent}; }
 <div class="footer">
 
   <span>
+    <a href="{Permalink}" title="{NoteCount}"><i class="fa fa-reply"></i></a>
     <a href="{ReblogURL}"><i class="fa fa-retweet"></i></a>
     <div class="like-button-parent">
     {LikeButton color="gray" size="12"}
