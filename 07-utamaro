@@ -133,6 +133,18 @@ $('iframe.tumblr_audio_player').contents().find("head")
 });
 });
 </script>
+
+<!-- replace gifv with gifs -->
+
+<script>
+$(window).on('load', function() {
+    $('a').each(function() {
+    $(this).attr(“href”, function(index, old) {
+      return old.replace("gifv", "gif");
+    });
+  });
+});
+</script>
         
 <style type="text/css">
 
@@ -474,8 +486,7 @@ margin-right:15px; }
 
 .like-button-parent {
 display:inline-block!important;
-position:relative;
-margin-left:5px; }
+position:relative; }
 
 .like-button-parent .like_button {
 position:absolute;
