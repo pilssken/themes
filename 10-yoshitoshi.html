@@ -10,8 +10,6 @@ custom tooltips by manos.malihu.gr
 no.js photosets by annasthms.tumblr.com & egg.design
 remove tumblr redirects by magnusthemes.tumblr.com
 responsive iframes by nouvae.tumblr.com
-minimal soundcloud player by shythemes.tumblr.com
-tumblr preview div remover by thm97.tumblr.com
 
 ----->
 
@@ -26,6 +24,7 @@ tumblr preview div remover by thm97.tumblr.com
 <!--image options-->
 <meta name="image:favicon" content=""/>
 <meta name="image:background" content=""/>
+<meta name="image:container" content=""/>
 <meta name="image:header" content=""/>
 <meta name="image:sidebar" content=""/>
 <meta name="image:link 1" content=""/>
@@ -48,6 +47,14 @@ tumblr preview div remover by thm97.tumblr.com
 <meta name="select:bg repeat" content="round"/>
 <meta name="select:bg attachment" content="fixed"/>
 <meta name="select:bg attachment" content="scroll"/>
+<meta name="select:container bg size" content="auto"/>
+<meta name="select:container bg size" content="cover"/>
+<meta name="select:container bg size" content="contain"/>
+<meta name="select:container bg repeat" content="repeat"/>
+<meta name="select:container bg repeat" content="no-repeat"/>
+<meta name="select:container bg repeat" content="round"/>
+<meta name="select:container bg attachment" content="fixed"/>
+<meta name="select:container bg attachment" content="scroll"/>
 <meta name="select:title align" content="left"/>
 <meta name="select:title align" content="right"/>
 <meta name="select:title align" content="center"/>
@@ -56,6 +63,10 @@ tumblr preview div remover by thm97.tumblr.com
 <meta name="select:desc align" content="right"/>
 <meta name="select:desc align" content="center"/>
 <meta name="select:desc align" content="justify"/>
+<meta name="select:links align" content="left"/>
+<meta name="select:links align" content="right"/>
+<meta name="select:links align" content="center"/>
+<meta name="select:links align" content="justify"/>
 <meta name="select:header horiz align" content="center"/>
 <meta name="select:header horiz align" title="left" content="flex-start"/>
 <meta name="select:header horiz align" title="right" content="flex-end"/>
@@ -152,18 +163,6 @@ flexibleFrames($(".video"));
 $(document).ready(flexFrame);
 </script>
 
-<!--minimal soundcloud players-->
-
-<script>
-// minimal soundcloud player © shythemes.tumblr
-$(document).ready(function(){
-var color = {color:links}; // color of play button (hex)
-$('.soundcloud_audio_player').each(function(){
-$(this).attr({ src: $(this).attr('src').split('&')[0] + '&amp;liking=false&amp;sharing=false&amp;auto_play=false&amp;show_comments=false&amp;continuous_play=false&amp;buying=false&amp;show_playcount=false&amp;show_artwork=false&amp;origin=tumblr&amp;color=' + color.split('#')[1], height:116, width:'100%' });
-});
-});
-</script>
-
 <!--remove tumblr redirects-->
 
 <script> 
@@ -173,14 +172,6 @@ var originalURL = $(this).attr("href").split("?z=")[1].split("&t=")[0];
 var replaceURL = decodeURIComponent(originalURL);
 $(this).attr("href", replaceURL);
 });
-});
-</script>
-
-<!--tumblr preview div remover-->
-
-<script>
-$(document).ready(function(){
-$(".tumblr_preview_marker___").remove(); // removes the tumblr preview markers that interfere with layout preview in customize
 });
 </script>
         
@@ -198,7 +189,6 @@ font-size:{text:font size};
 letter-spacing:{text:letter spacing};
 line-height:{text:line height};
 color:{color:text};
-image-rendering:pixelated;
 background:{color:background} url("{image:background}");
 background-size:{select:bg size};
 background-repeat:{select:bg repeat};
@@ -256,7 +246,11 @@ margin:0 auto;
 width:800px;
 overflow:auto;
 {block:ifContainerBorder}
-background:{color:container};
+background:{color:container} url('{image:container}');
+background-size:{select:container bg size};
+background-repeat:{select:container bg repeat};
+background-attachment:{select:container bg attachment};
+background-position:center;
 border-left:3px double {color:borders};
 border-right:3px double {color:borders};
 {/block:ifContainerBorder} }
@@ -316,7 +310,7 @@ display:none; }
 box-sizing:border-box;
 margin:0;
 padding:0;
-max-width:100%; }
+width:100%; }
 
 #sidebar .desc {
 box-sizing:border-box;
@@ -329,12 +323,16 @@ display:none; }
 
 #sidebar .links {
 margin:10px 0;
-padding:0; }
+padding:0;
+text-align:{select:links align}; }
 
 #sidebar .links img {
 width:25px;
 margin:0 5px 0 0;
 vertical-align:middle; }
+
+#sidebar .links img:empty {
+display:none; }
 
 #sidebar .links a {
 box-sizing:border-box;
@@ -346,6 +344,7 @@ max-width:100%;
 padding:5px;
 border:1px solid {color:borders};
 overflow:auto;
+background:{color:container};
 {/block:ifLinkBorder} }
 
 #sidebar .links a:empty {
@@ -359,7 +358,8 @@ box-sizing:border-box;
 margin-right:20px;
 {/block:ifContainerBorder}
 width:600px;
-float:right; }
+float:right;
+image-rendering:auto; }
 
 .post {
 box-sizing:border-box;
@@ -425,8 +425,9 @@ font-weight:{select:title weight}; }
 text-align:left; }
 
 .question {
-padding:10px;
-margin-bottom:10px; }
+padding:20px;
+margin:0;
+border-bottom:1px solid {color:borders}; }
 
 .answer {
 padding: 0;
@@ -528,7 +529,7 @@ color:#ff492f; }
 #pag {
 display:block;
 width:100%;
-margin:auto;
+margin:15px 0;
 color:{color:links}; }
 
 /* PERMALINK */
@@ -604,7 +605,7 @@ margin:10px; }
 
 {block:Date}
 <div class="posthead">
-  {block:RebloggedFrom} reblogged from <a href="{ReblogParentURL}">{ReblogParentName}</a>{/block:RebloggedFrom} 
+  {block:RebloggedFrom}reblogged from <a href="{ReblogParentURL}">{ReblogParentName}</a>{/block:RebloggedFrom} 
 </div>
 {/block:Date}
 
