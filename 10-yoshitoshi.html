@@ -36,6 +36,7 @@ responsive iframes by nouvae.tumblr.com
 <meta name="color:container" content="#000"/>
 <meta name="color:text" content="#fff"/>
 <meta name="color:links" content="#fff"/>
+<meta name="color:sidebar links" content="#fff"/>
 <meta name="color:borders" content="#fff"/>
 <meta name="color:header text bg" content="#fff"/>
 <!--body font-->
@@ -79,6 +80,7 @@ responsive iframes by nouvae.tumblr.com
 <!--boolean options-->
 <meta name="if:header" content=""/>
 <meta name="if:container border" content=""/>
+<meta name="if:header border" content=""/>
 <meta name="if:link border" content=""/>
 <!--text options-->
 <meta name="text:google font" content=""/>
@@ -268,9 +270,10 @@ align-items:{select:header vert align};
 background:url('{image:header}');
 background-size:{select:header img size};
 background-position:{text:header img position};
-{block:ifContainerBorder}
+background-repeat:no-repeat;
+{block:ifContainerBorder}{block:ifHeaderBorder}
 border-bottom:3px double {color:borders};
-{/block:ifContainerBorder}}
+{/block:ifHeaderBorder}{/block:ifContainerBorder}}
 
 #header h1 {
 margin:10px;
@@ -294,6 +297,9 @@ width:180px;
 margin:0 20px;
 width:140px;
 {/block:ifContainerBorder} }
+
+#sidebar a {
+color:{color:sidebar links}; }
 
 #sidebar h1 {
 box-sizing:border-box;
