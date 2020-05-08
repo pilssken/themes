@@ -24,21 +24,13 @@ responsive iframes by nouvae.tumblr.com
 <!--image options-->
 <meta name="image:favicon" content=""/>
 <meta name="image:background" content=""/>
-<meta name="image:container" content=""/>
-<meta name="image:header" content=""/>
 <meta name="image:sidebar" content=""/>
-<meta name="image:link 1" content=""/>
-<meta name="image:link 2" content=""/>
-<meta name="image:link 3" content=""/>
-<meta name="image:link 4" content=""/>
 <!--color options-->
 <meta name="color:background" content="#000"/>
-<meta name="color:container" content="#000"/>
 <meta name="color:text" content="#fff"/>
 <meta name="color:links" content="#fff"/>
-<meta name="color:sidebar links" content="#fff"/>
+<meta name="color:container" content="#000"/>
 <meta name="color:borders" content="#fff"/>
-<meta name="color:header text bg" content="#fff"/>
 <!--body font-->
 <meta name="select:bg size" content="auto"/>
 <meta name="select:bg size" content="cover"/>
@@ -48,49 +40,13 @@ responsive iframes by nouvae.tumblr.com
 <meta name="select:bg repeat" content="round"/>
 <meta name="select:bg attachment" content="fixed"/>
 <meta name="select:bg attachment" content="scroll"/>
-<meta name="select:container bg size" content="auto"/>
-<meta name="select:container bg size" content="cover"/>
-<meta name="select:container bg size" content="contain"/>
-<meta name="select:container bg repeat" content="repeat"/>
-<meta name="select:container bg repeat" content="no-repeat"/>
-<meta name="select:container bg repeat" content="round"/>
-<meta name="select:container bg attachment" content="fixed"/>
-<meta name="select:container bg attachment" content="scroll"/>
-<meta name="select:title align" content="left"/>
-<meta name="select:title align" content="right"/>
-<meta name="select:title align" content="center"/>
-<meta name="select:title align" content="justify"/>
-<meta name="select:desc align" content="left"/>
-<meta name="select:desc align" content="right"/>
-<meta name="select:desc align" content="center"/>
-<meta name="select:desc align" content="justify"/>
-<meta name="select:links align" content="left"/>
-<meta name="select:links align" content="right"/>
-<meta name="select:links align" content="center"/>
-<meta name="select:links align" content="justify"/>
-<meta name="select:header horiz align" content="center"/>
-<meta name="select:header horiz align" title="left" content="flex-start"/>
-<meta name="select:header horiz align" title="right" content="flex-end"/>
-<meta name="select:header vert align" content="center"/>
-<meta name="select:header vert align" title="top" content="flex-start"/>
-<meta name="select:header vert align" title="bottom" content="flex-end"/>
-<meta name="select:header img size" content="auto"/>
-<meta name="select:header img size" content="cover"/>
-<meta name="select:header img size" content="contain"/>
-<!--boolean options-->
-<meta name="if:header" content=""/>
-<meta name="if:container border" content=""/>
-<meta name="if:header border" content=""/>
-<meta name="if:link border" content=""/>
 <!--text options-->
 <meta name="text:google font" content=""/>
 <meta name="text:font size" content="12px"/>
 <meta name="text:letter spacing" content="0"/>
 <meta name="text:line height" content="1.7"/>
 <meta name="text:title size" content="125%"/>
-<meta name="text:header text size" content="125%"/>
-<meta name="text:header text" content="title"/>
-<meta name="text:side title" content="title"/>
+<meta name="text:blog title" content="title"/>
 <meta name="text:description" content="desc"/>
 <meta name="text:link 1" content=""/>
 <meta name="text:link 1 url" content=""/>
@@ -100,7 +56,6 @@ responsive iframes by nouvae.tumblr.com
 <meta name="text:link 3 url" content=""/>
 <meta name="text:link 4" content=""/>
 <meta name="text:link 4 url" content=""/>
-<meta name="text:header img position" content="left top"/>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
@@ -197,21 +152,14 @@ background-repeat:{select:bg repeat};
 background-attachment:{select:bg attachment};
 background-position:center; }
 
-p {
-margin: 0 0 10px 0; }
+p { margin: 0 0 10px 0; }
+p:last-child { margin:0; }
 
-p:last-child {
-margin:0; }
+a { color:{color:links}; text-decoration:none; }
+a:hover { color:{color:text}; }
+a[title] { cursor:help; }
 
-a {
-color:{color:links};
-text-decoration:none; }
-
-a[title] {
-cursor:help; }
-
-h1,h2,h3,h4,h5,h6 {
-margin:0 0 10px 0; }
+h1,h2,h3,h4,h5,h6 { margin:0 0 10px 0; }
 
 li {
 margin-left:-20px;
@@ -239,6 +187,8 @@ background:{color:container};
 border:1px solid {color:borders};
 z-index:999999; }
 
+#header li:empty { display:none; }
+
 /* MAIN WRAPPER */
 
 main {
@@ -248,19 +198,39 @@ margin:0 auto; }
 /* HEADER */
 
 #header {
-margin:0 auto 20px auto;
+margin:20px auto 40px auto;
 padding:0;
-width:100%; }
+width:100%;
+text-align:center; }
+
+#header img {
+margin:0 0 10px 0;
+padding:0;
+width:100px;
+height:100px;
+border-radius:100%; }
+
+#header h1 {
+margin:0;
+padding:0;
+font-size:{text:title size};
+color:{color:text}; }
+
+#header ul { margin:0; padding:0; list-style-type:none; }
+#header li { margin:0; padding:0; display:inline-block; }
 
 /* POSTS */
 
 #posts {
+margin:0;
+padding:0;
 width:600px; }
 
 .post {
+display:block;
 box-sizing:border-box;
 width:600px;
-margin:0 auto 20px auto;
+margin:0 auto 40px auto;
 padding:0;
 background:{color:container};
 border:1px solid {color:borders};
@@ -278,11 +248,7 @@ line-height:1; }
 
 .body {
 margin:0;
-padding:0 20px 20px 20px;
-border-bottom:1px solid rgba({RGBcolor:borders},.5); }
-
-.body a {
-border-bottom:1px solid #8f8f8f; }
+padding:0 10px; }
 
 .media {
 padding:0;
@@ -312,8 +278,7 @@ margin:0;
 height:85px;
 width:100%; }
 
-.spotify_audio_player {
-height:80px !important; }
+.spotify_audio_player { height:80px!important; }
 
 .quote {
 margin:0 0 15px 0;
@@ -335,7 +300,7 @@ margin: 0; }
 
 .caption {
 display:block;
-margin:20px 20px 0 20px;
+margin:10px 10px 0 10px;
 padding:0;
 text-align:left;
 word-wrap:break-word; }
@@ -344,12 +309,12 @@ word-wrap:break-word; }
 display:none; }
 
 .reblogger {
-margin:20px 0 15px 0;
-padding:0 0 0 20px; }
+margin:15px 10px;
+padding:0; }
 
 .reblog-avatar {
-width:25px;
-height:25px;
+width:20px;
+height:20px;
 margin-right:10px;
 vertical-align:middle; }
 
@@ -369,7 +334,9 @@ max-width:100%; }
 box-sizing:border-box;
 display:block;
 margin:0;
-padding:0; }
+padding:10px; }
+
+.perma1 { margin-bottom:5px; }
 
 /* PAGINATION */
 
@@ -411,7 +378,15 @@ margin:10px; }
 <main>
 
 <div id="header">
-  {block:ifHeaderText}<h1>{text:header text}</h1>{/block:ifHeaderText}
+  <a href="/"><img src="{image:sidebar}"></a>
+  <a href="/"><h1>{text:blog title}</h1></a>
+  <p>{text:description}</p>
+  <ul>
+    <li><a href="{text:link 1 url}">{text:link 1}</a></li> 
+    <li><a href="{text:link 2 url}">{text:link 2}</a></li> 
+    <li><a href="{text:link 3 url}">{text:link 3}</a></li> 
+    <li><a href="{text:link 4 url}">{text:link 4}</a></li>
+  </ul>
 </div>
 
 <div id="posts">{block:Posts}
@@ -611,22 +586,21 @@ margin:10px; }
   <div class="caption">{Answer}</div>
 {/block:Answer}
 
-
 {block:Date}
 
 <div class="footer">
   <div class="perma1">
     <a href="{Permalink}">{TimeAgo}</a>
-    {block:RebloggedFrom}
-    <a href="{ReblogRootURL}">{ReblogRootName}</a>{block:RebloggedFrom},
+    {block:RebloggedFrom}<span style="float:right">
+    <a href="{ReblogRootURL}">{ReblogRootName}</a>{block:RebloggedFrom}
     via <a href="{ReblogParentURL}">{ReblogParentName}</a>{/block:RebloggedFrom}
-    {/block:RebloggedFrom}
+    </span>{/block:RebloggedFrom}
   </div>
   <div class="perma2">
     {block:HasTags}
     {block:Tags}<a href="{TagURL}">#{Tag}</a> {/block:Tags}
     {/block:HasTags}
-    <span style="float:right"><a href="{ReblogURL}">REBLOG</a></span>
+    <span style="float:right"><a href="{ReblogURL}">reblog</a></span>
   </div>
 </div>
 
@@ -638,6 +612,7 @@ margin:10px; }
 
 {/block:Date}
 
+</div>
 {/block:Posts}</div>
 
 {block:Pagination}
@@ -655,7 +630,6 @@ margin:10px; }
   </div>
 {/block:Pagination}
 
-</div>
 </div>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
