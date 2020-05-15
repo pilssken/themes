@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <head>
 
-<!--- MORONOBU THEME by pilssken.tumblr.com
+<!--- UTAMARO THEME by pilssken.tumblr.com
 
 GNU General Public License v3.0
 https://www.gnu.org/licenses/gpl-3.0-standalone.html
 
-- style-my-tooltips by manos.malihu.gr
-- no.js photosets by annasthms.tumblr.com & egg.design
-- remove tumblr redirects script by magnusthemes.tumblr.com
-- icons by font awesome
+style-my-tooltips by manos.malihu.gr
+no.js photosets by annasthms.tumblr.com & egg.design
+responsive iframes by nouvae.tumblr.com
+remove tumblr redirects script by magnusthemes.tumblr.com
+icons by fontawesome.com
 
 --->
 
@@ -20,6 +21,9 @@ https://www.gnu.org/licenses/gpl-3.0-standalone.html
 
 <!--font awesome-->
 <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+<!--google fonts-->
+<link href="https://fonts.googleapis.com/css?family={text:google font}" rel="stylesheet">
 
 <!--image options-->
 <meta name="image:favicon" content=""/>
@@ -43,10 +47,19 @@ https://www.gnu.org/licenses/gpl-3.0-standalone.html
 <meta name="if:avatar border" content=""/>
 <meta name="if:avatar bg" content=""/>
 <!--text options-->
+<meta name="text:header position" content="center"/>
+<meta name="text:google font" content=""/>
 <meta name="text:title" content="title"/>
 <meta name="text:subtitle" content="subtitle"/>
 <meta name="text:description" content="keep it at two lines"/>
-<meta name="text:header position" content="center"/>
+<meta name="text:link 1" content=""/>
+<meta name="text:link 1 url" content=""/>
+<meta name="text:link 2" content=""/>
+<meta name="text:link 2 url" content=""/>
+<meta name="text:link 3" content=""/>
+<meta name="text:link 3 url" content=""/>
+<meta name="text:link 4" content=""/>
+<meta name="text:link 4 url" content=""/>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
@@ -133,18 +146,6 @@ $('iframe.tumblr_audio_player').contents().find("head")
 });
 });
 </script>
-
-<!-- replace gifv with gifs -->
-
-<script>
-$(window).on('load', function() {
-    $('a').each(function() {
-    $(this).attr(“href”, function(index, old) {
-      return old.replace("gifv", "gif");
-    });
-  });
-});
-</script>
         
 <style type="text/css">
 
@@ -153,7 +154,7 @@ $(window).on('load', function() {
 body {
 margin:0;
 padding:0;
-font-family:'Roboto',Arial,sans-serif;
+font-family:{text:google font},Roboto,Arial,sans-serif;
 font-size:13px;
 color:{color:text};
 line-height:18px;
@@ -253,10 +254,12 @@ width:125px;
 height:125px;
 margin-left:15px;
 background:url('{image:avatar}');
+background-size:contain;
+background-repeat:no-repeat;
+background-position:center;
 {block:ifAvatarBG}
 background-color:{color:posts};
 {/block:ifAvatarBG}
-background-size:cover;
 {block:ifAvatarBorder}
 border:3px solid {color:posts};
 {/block:ifAvatarBorder}
@@ -281,10 +284,10 @@ text-shadow:2px 2px 1px #000; }
 
 #desc {
 display:block;
-margin:22px 0 0 0; }
+margin:23px 0 0 0; }
 
 #sidelinks {
-margin:10px 0 0 0; }
+margin:6px 0 0 0; }
 
 #sidelinks a {
 margin-right:10px; }
@@ -554,12 +557,11 @@ color:{color:accent}; }
       <div id="sidetitle">{text:title}</div>
       <div id="subtitle">{text:subtitle}</div>
       <div id="desc">{text:description}</div>
-      {block:HasPages}{block:ifPageLinks}
+      {block:ifPageLinks}
       <div id="sidelinks">
-        {block:AskEnabled}<a href="/ask">{AskLabel}</a>{/block:AskEnabled}
-        {block:Pages}<a href="{URL}">{Label}</a> {/block:Pages}
+{block:ifLink1}<a href="{text:link 1 url}">{text:link 1}</a>{/block:ifLink1} {block:ifLink2}<a href="{text:link 2 url}"> {text:link 2}</a>{/block:ifLink2} {block:ifLink3}<a href="{text:link 3 url}"> {text:link 3}</a>{/block:ifLink3} {block:ifLink4}<a href="{text:link 4 url}"> {text:link 4}</a>{/block:ifLink4}
       </div>
-      {/block:ifPageLinks}{/block:HasPages}
+      {/block:ifPageLinks}
     </div>
   </div>
 
@@ -827,7 +829,7 @@ color:{color:accent}; }
 <div class="footer">
 
   <span>
-    <a href="{Permalink}" title="{NoteCount}"><i class="fa fa-reply"></i></a>
+    <a href="{Permalink}" class="notecount" title="{NoteCount}"><i class="fa fa-reply"></i></a>
     <a href="{ReblogURL}"><i class="fa fa-retweet"></i></a>
     <div class="like-button-parent">
     {LikeButton color="gray" size="12"}
