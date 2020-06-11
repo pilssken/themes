@@ -232,8 +232,6 @@ box-sizing:border-box;
 width:600px;
 margin:0 auto 40px auto;
 padding:0;
-background:{color:container};
-border:1px solid {color:borders};
 overflow:hidden; }
 
 /* CONTENT */
@@ -247,8 +245,8 @@ font-weight:{select:title weight};
 line-height:1; }
 
 .body {
-margin:0;
-padding:0 10px; }
+margin:15px 0;
+padding:0; }
 
 .media {
 padding:0;
@@ -295,12 +293,12 @@ margin:0;
 border-bottom:1px solid {color:borders}; }
 
 .answer {
-padding: 0;
-margin: 0; }
+padding:0;
+margin:0; }
 
 .caption {
 display:block;
-margin:10px 10px 0 10px;
+margin:10px 0;
 padding:0;
 text-align:left;
 word-wrap:break-word; }
@@ -309,17 +307,19 @@ word-wrap:break-word; }
 display:none; }
 
 .reblogger {
-margin:15px 10px;
+margin:15px 0 -10px 0;
 padding:0; }
 
 .reblog-avatar {
+display:none;
 width:20px;
 height:20px;
 margin-right:10px;
 vertical-align:middle; }
 
 .reblog-username {
-vertical-align:middle; }
+vertical-align:middle;
+text-transform:uppercase; }
 
 .captionbody {
 margin:0;
@@ -333,8 +333,8 @@ max-width:100%; }
 .footer {
 box-sizing:border-box;
 display:block;
-margin:0;
-padding:10px; }
+margin:10px 0 0 0;
+padding:0px; }
 
 .perma1 { margin-bottom:5px; }
 
@@ -428,18 +428,13 @@ margin:10px; }
   {/block:NotReblog}
 
   {block:RebloggedFrom}
-  <div class="caption">
   {block:Reblogs}
-    <p><img class="reblog-avatar" src="{PortraitURL-64}">
-      {block:IsActive}
-        <a class="reblog-username" target="_blank" href="{Permalink}"><b>{Username}</b></a>
-      {/block:IsActive}
-      {block:IsDeactivated}
-        <b class="reblog-username">{Username}</b>
-      {/block:IsDeactivated}</p>
-    <div class="captionbody">{Body}</div>
+    <div class="reblogger">
+      <img class="reblog-avatar" src="{PortraitURL-64}">
+      <a class="reblog-username" target="_blank" href="{Permalink}"><b>{Username}</b></a>
+    </div>
+    <div class="body">{Body}</div>
   {/block:Reblogs}
-  </div>
   {/block:RebloggedFrom}
   
   {/block:Caption}
@@ -461,18 +456,13 @@ margin:10px; }
   {/block:NotReblog}
 
   {block:RebloggedFrom}
-  <div class="caption">
   {block:Reblogs}
-    <p><img class="reblog-avatar" src="{PortraitURL-64}">
-      {block:IsActive}
-        <a class="reblog-username" target="_blank" href="{Permalink}"><b>{Username}</b></a>
-      {/block:IsActive}
-      {block:IsDeactivated}
-        <b class="reblog-username">{Username}</b>
-      {/block:IsDeactivated}</p>
-    <div class="captionbody">{Body}</div>
+    <div class="reblogger">
+      <img class="reblog-avatar" src="{PortraitURL-64}">
+      <a class="reblog-username" target="_blank" href="{Permalink}"><b>{Username}</b></a>
+    </div>
+    <div class="body">{Body}</div>
   {/block:Reblogs}
-  </div>
   {/block:RebloggedFrom}
   
   {/block:Caption}
@@ -498,18 +488,13 @@ margin:10px; }
   {/block:NotReblog}
 
   {block:RebloggedFrom}
-  <div class="caption">
   {block:Reblogs}
-    <p><img class="reblog-avatar" src="{PortraitURL-64}">
-      {block:IsActive}
-        <a class="reblog-username" target="_blank" href="{Permalink}"><b>{Username}</b></a>
-      {/block:IsActive}
-      {block:IsDeactivated}
-        <b class="reblog-username">{Username}</b>
-      {/block:IsDeactivated}</p>
-    <div class="captionbody">{Body}</div>
+    <div class="reblogger">
+      <img class="reblog-avatar" src="{PortraitURL-64}">
+      <a class="reblog-username" target="_blank" href="{Permalink}"><b>{Username}</b></a>
+    </div>
+    <div class="body">{Body}</div>
   {/block:Reblogs}
-  </div>
   {/block:RebloggedFrom}
   
   {/block:Caption}
@@ -538,14 +523,13 @@ margin:10px; }
   {/block:NotReblog}
 
   {block:RebloggedFrom}
-  <div class="caption">
   {block:Reblogs}
-      <p><img class="reblog-avatar" src="{PortraitURL-64}">
-      <a class="reblog-username" target="_blank" href="{Permalink}">
-      <b>{Username}</b></a></p>
-      <p>{Body}</p>
+    <div class="reblogger">
+      <img class="reblog-avatar" src="{PortraitURL-64}">
+      <a class="reblog-username" target="_blank" href="{Permalink}"><b>{Username}</b></a>
+    </div>
+    <div class="body">{Body}</div>
   {/block:Reblogs}
-  </div>
   {/block:RebloggedFrom}
   
   {/block:Caption}
@@ -564,18 +548,15 @@ margin:10px; }
     <div class="caption">{Caption}</div>
   {/block:NotReblog}
 
-  {block:RebloggedFrom}<div class="caption">
+  {block:RebloggedFrom}
   {block:Reblogs}
-    <p><img class="reblog-avatar" src="{PortraitURL-64}">
-      {block:IsActive}
-        <a class="reblog-username" target="_blank" href="{Permalink}"><b>{Username}</b></a>
-      {/block:IsActive}
-      {block:IsDeactivated}
-        <b class="reblog-username">{Username}</b>
-      {/block:IsDeactivated}</p>
-    <div class="captionbody">{Body}</div>
+    <div class="reblogger">
+      <img class="reblog-avatar" src="{PortraitURL-64}">
+      <a class="reblog-username" target="_blank" href="{Permalink}"><b>{Username}</b></a>
+    </div>
+    <div class="body">{Body}</div>
   {/block:Reblogs}
-  </div>{/block:RebloggedFrom}
+  {/block:RebloggedFrom}
   
   {/block:Caption}
   
@@ -590,17 +571,13 @@ margin:10px; }
 
 <div class="footer">
   <div class="perma1">
-    <a href="{Permalink}">{TimeAgo}</a>
-    {block:RebloggedFrom}<span style="float:right">
-    <a href="{ReblogRootURL}">{ReblogRootName}</a>{block:RebloggedFrom}
-    via <a href="{ReblogParentURL}">{ReblogParentName}</a>{/block:RebloggedFrom}
-    </span>{/block:RebloggedFrom}
+    <a href="{Permalink}">{TimeAgo}</a>{block:RebloggedFrom} via <a href="{ReblogParentURL}">{ReblogParentName}</a>{/block:RebloggedFrom}
+  <span style="float:right"><a href="{ReblogURL}">reblog</a></span>
   </div>
   <div class="perma2">
     {block:HasTags}
     {block:Tags}<a href="{TagURL}">#{Tag}</a> {/block:Tags}
     {/block:HasTags}
-    <span style="float:right"><a href="{ReblogURL}">reblog</a></span>
   </div>
 </div>
 
