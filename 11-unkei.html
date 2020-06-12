@@ -47,7 +47,6 @@ responsive iframes by nouvae.tumblr.com
 <meta name="text:font size" content="12px"/>
 <meta name="text:letter spacing" content="0"/>
 <meta name="text:line height" content="1.7"/>
-<meta name="text:title size" content="125%"/>
 <meta name="text:side title" content="title"/>
 <meta name="text:description" content="desc"/>
 
@@ -184,7 +183,7 @@ max-width:350px;
 font:{select:font};
 color:{color:text};
 background:{color:container};
-border:3px outset {color:container};
+border:2px outset {color:container};
 z-index:999999; }
 
 /* WRAPPER */
@@ -349,13 +348,15 @@ border:3px outset {color:container}; }
 ol.notes {
 list-style-type:none;
 margin:0;
-padding:20px; }
+padding:10px;
+border:1px inset {color:container}; }
 
 ol.notes li.note img {
 display:none; }
 
 ol.notes li.note {
-margin:5px 0;
+display:block;
+margin:0 0 5px 0;
 padding:0; }
 
 /* touch and you die */
@@ -365,7 +366,7 @@ position:fixed;
 bottom:0;
 left:0;
 margin:10px;
-padding:1px;
+padding:5px;
 line-height:1;
 background:{color:container};
 border:3px outset {color:container}; }
@@ -397,7 +398,7 @@ border:3px outset {color:container}; }
 
 {block:Date}
 <div class="titlebar">
-  <a href="{Permalink}"><b>{TimeAgo}</b></a>
+  <a href="{Permalink}" title="{NoteCountwithLabel}"><b>{TimeAgo}</b></a>
   <span style="float:right">{block:RebloggedFrom}reblogged from <a href="{ReblogParentURL}">{ReblogParentName}</a>{/block:RebloggedFrom} 
 </span></div>
 {/block:Date}
@@ -416,10 +417,6 @@ border:3px outset {color:container}; }
   {/block:Reblogs}
   {/block:RebloggedFrom}
   {block:NotReblog}
-    {block:Date}<div class="reblogger">
-      <img class="reblog-avatar" src="{PortraitURL-64}">
-      <a class="reblog-username" target="_blank" href="{Permalink}"><b>{Username}</b></a>
-    </div>{/block:Date}
     <div class="captionbody">{Body}</div>
   {/block:NotReblog}
   {/block:Body}
@@ -475,11 +472,7 @@ border:3px outset {color:container}; }
 {block:Caption} <!-- CAPTIONS -->
 
   {block:NotReblog}<div class="caption">
-    <div class="reblogger">
-      <img class="reblog-avatar" src="{PortraitURL-64}">
-      <a class="reblog-username" href="{Permalink}">{Username}</a>
-    </div>
-    <div class="captionbody">{Body}</div>
+    <div class="captionbody">{Caption}</div>
   </div>{/block:NotReblog}
   
   {block:RebloggedFrom}<div class="caption">{block:Reblogs}
