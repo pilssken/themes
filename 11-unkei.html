@@ -150,6 +150,8 @@ p:last-child { margin:0; }
 
 h1,h2,h3,h4,h5,h6 { margin:0 0 10px 0; }
 
+img { max-width:100%; }
+
 li {
 margin-left:-20px;
 padding-left:10px; }
@@ -246,7 +248,7 @@ line-height:1; }
 .media { padding:0; margin:0; }
 .media img { margin:0 0 -5px 0; padding:0; width:100%; }
 
-.photoset-grid { margin:0; }
+.photoset-grid { margin:0 0 3px 0; }
 [photoset-layout] { grid-gap:3px; }
 [photoset-layout] div { cursor:pointer; }
 
@@ -290,31 +292,33 @@ border-bottom:1px solid {color:text}; }
 
 .caption {
 display:block;
-margin:3px 0;
+margin:0 0 3px 0;
 padding:10px;
 word-wrap:break-word;
 border:1px inset {color:container}; }
 
 .caption:empty { display:none; }
 
-.reblogger {
-margin:0;
-padding:0 0 10px 0; }
+.reblogger { margin:5px 0; padding:0; }
+.reblogger:first-child { margin:0 0 5px 0; }
 
 .reblog-avatar {
+display:none;
 width:20px;
 height:20px;
 margin-right:10px;
 vertical-align:middle; }
 
 .reblog-username {
-vertical-align:-1px; }
+text-transform:uppercase;
+vertical-align:middle; }
 
 /* POST INFO */
 
 .titlebar {
 margin:0 0 3px 0;
 padding:0 5px;
+vertical-align:middle;
 color:{color:titlebar text};
 background:linear-gradient(to right,{color:gradient 1},{color:gradient 2}); }
 
@@ -343,6 +347,9 @@ line-height:1;
 background:{color:container};
 border:3px outset {color:container}; }
 
+#pag a:hover {
+border:3px inset {color:container}; }
+
 /* PERMALINK */
 
 ol.notes {
@@ -363,13 +370,17 @@ padding:0; }
 
 #snake {
 position:fixed;
-bottom:0;
-left:0;
-margin:10px;
+bottom:10px;
+lefT:10px; }
+
+#snake a {
+margin:0;
 padding:5px;
-line-height:1;
 background:{color:container};
 border:3px outset {color:container}; }
+
+#snake a:hover {
+border:3px inset {color:container}; }
 
 {CustomCSS}
 </style>
