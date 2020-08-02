@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<head>
+
+<!---- /// THEME by pilssken.tumblr.com
+
+GNU General Public License v3.0
+https://www.gnu.org/licenses/gpl-3.0-standalone.html
+
+----->
+
+<title>{Title}</title>
+<meta charset="utf-8">
+<link rel="shortcut icon" href="{Favicon}">
+<link rel="alternate" type="application/rss+xml" href="{RSS}">
+<link href="https://fonts.googleapis.com/css?family={text:font}" rel="stylesheet">
+<!--options-->
+<meta name="description" content="{MetaDescription}" />
+<!--image options-->
+<meta name="image:background" content=""/>
+<meta name="image:sidebar" content=""/>
+<!--color options-->
+<meta name="color:text" content="#CCC"/>
+<meta name="color:accent" content="#216836"/>
+<meta name="color:background" content="#070707"/>
+<meta name="color:foreground" content="#1e1d28"/>
+<!--select options-->
+<meta name="select:bg size" content="auto"/>
+<meta name="select:bg size" content="cover"/>
+<meta name="select:bg size" content="contain"/>
+<meta name="select:bg repeat" content="repeat"/>
+<meta name="select:bg repeat" content="no-repeat"/>
+<meta name="select:bg repeat" content="round"/>
+<meta name="select:bg attachment" content="fixed"/>
+<meta name="select:bg attachment" content="scroll"/>
+<!--text options-->
+<meta name="text:font" content=""/>
+<meta name="text:font size" content="12px"/>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<!--no .js photosets-->
+<link href="https://static.tumblr.com/0podkko/oDSpg7y88/photosets.css" rel="stylesheet">
+<script>
+function gatherData(images, arr) {
+for (let i = 0; i < images.length; i++) {
+let currentData = {
+"width": images[i].getAttribute('data-width'),
+"height": images[i].getAttribute('data-height'),
+"low_res": images[i].getAttribute('data-lowres'),
+"high_res": images[i].getAttribute('data-highres')
+};
+arr.push(currentData);
+}
+}
+function getIndex(elem) {
+let i = 0;
+while( (elem = elem.previousElementSibling) != null ) i++;
+return i;
+}
+function lightbox(elem) {
+let currentPhotoset = elem.parentNode;
+let photosetPhotos = currentPhotoset.getElementsByTagName('div');
+let data = [];
+gatherData(photosetPhotos, data);
+Tumblr.Lightbox.init(data, getIndex(elem) + 1);
+}
+</script>
+
+<style>
+
+/* basic styling */
+
+:root {
+--text:{color:text};
+--accent:{color:accent};
+--background:{color:background};
+--foreground:{color:foreground}; }
+
+body {
+margin:0;
+padding:0;
+font-family:{text:font},Arial,sans-serif;
+font-size:{text:font size};
+line-height:1.7;
+color:var(--text);
+background:var(--background) url("{image:background}");
+background-size:{select:bg size};
+background-repeat:{select:bg repeat};
+background-attachment:{select:bg attachment};
+background-position:center; }
+
+p { margin:0 0 10px 0; }
+p:last-child { margin:0; }
+p:empty {display:none; }
+
+br { display:none; }
+
+a { color:var(--accent); text-decoration:none; }
+
+/* containers */
+
+main {
+margin:0 auto;
+padding:0; }
+
+#content {
+width:600px;
+margin:0 auto;
+padding:0; }
+
+.post {
+box-sizing:border-box;
+margin:0 0 75px 0;
+padding:15px;
+background:var(--foreground); }
+
+/* text posts */
+
+.text { margin:0; padding:0; }
+
+/* photos */
+
+.media { margin:0 0 10px 0; }
+
+.post img { max-width:100%; }
+.media img { width:100%; }
+
+.photoset-grid { margin:0 0 10px 0; }
+[photoset-layout] { grid-gap:3px; }
+[photoset-layout] div { cursor:pointer; }
+/* captions */
+
+.caption { margin:0 0 10px 0; }
+.caption:last-child { margin:0; }
+.caption:empty { display:none; }
+
+.reblogger {
+margin:5px 0 7px 0;
+line-height:1; }
+.reblog-avatar {
+margin-right:5px;
+width:25px;
+height:25px;
+vertical-align:middle; }
+
+</style>
+</head>
+<body>
+
+<main>
+
+<div id="sidebar"> <!--sidebar-->
+  <h1>{Title}</h1>
+  {block:Description}<p id="description">{Description}</p>{/block:Description}
+</div>
+
+<div id="content">{block:Posts} <!--post container-->
+
+<div class="post"> <!--posts-->
+
+{block:Text}
+  <div class="text">
+  {block:Title}<h3>{Title}</h3>{/block:Title}
+  {block:Body}
+  {block:RebloggedFrom}{block:Reblogs}
+  <div class="reblogger">
+    <img class="reblog-avatar" src="{PortraitURL-64}">
+    <a class="reblog-username" href="{Permalink}">{Username}</a>
+  </div>{/block:Date}
+  <div class="body">{Body}</div>
+  {/block:Reblogs}{/block:RebloggedFrom}
+  {block:NotReblog}<div class="body">{Body}</div>{/block:NotReblog}
+  {/block:Body}
+  </div>
+{/block:Text}
+
+{block:Photo}{LinkOpenTag}
+  <div class="media"><img src="{PhotoURL-500}" alt="{PhotoAlt}"/></div>
+{LinkCloseTag}{/block:Photo}
+
+{block:Photoset}
+  <div class="photoset-grid" photoset-layout="{PhotosetLayout}">
+  {block:Photos}<div data-width="{PhotoWidth-HighRes}" data-height="{PhotoHeight-HighRes}" data-lowres="{PhotoURL-500}" data-highres="{PhotoURL-HighRes}" onclick="lightbox(this)"><img src="{PhotoURL-HighRes}" /></div>{/block:Photos}
+  </div>
+{/block:Photoset}
+
+{block:Quote}
+  "{Quote}"
+  {block:Source}<div class="source">{Source}</div>{/block:Source}
+{/block:Quote}
+
+{block:Link}
+  <a href="{URL}" class="link" {Target}>{Name}</a>
+  {block:Description}<div class="desc">{Description}</div>{/block:Description}
+{/block:Link}
+
+{block:Chat}
+  {block:Title}<div class="title">{Title}</div>{/block:Title}
+  {block:Lines}<div class="{Alt} user_{UserNumber}">
+    {block:Label}<b>{Label}</b>{/block:Label}&nbsp;{Line}
+  </div>{/block:Lines}
+{/block:Chat}
+
+{block:Video}
+  {Video-500}
+{/block:Video}
+
+{block:Audio}
+  <div class="audio">{block:AudioEmbed}{AudioEmbed}{/block:AudioEmbed}</div>
+{/block:Audio}
+
+{block:Answer}
+  <div class="question">{Asker}: {Question}</div>
+  <div class="body">{Answer}</div>
+{/block:Answer}
+
+{block:Caption}
+  {block:NotReblog}<div class="caption">
+  <div class="body">{Caption}</div>
+  </div>{/block:NotReblog}
+  {block:RebloggedFrom}<div class="caption">{block:Reblogs}
+  <div class="reblogger">
+  <img class="reblog-avatar" src="{PortraitURL-64}">
+  <a class="reblog-username" href="{Permalink}">{Username}</a>
+  </div>
+  <div class="caption">{Body}</div>
+  {/block:Reblogs}</div>{/block:RebloggedFrom}
+{/block:Caption}
+
+</div>
+
+{/block:Posts}</div>
+
+</main>
+
+</body>
+</html>
