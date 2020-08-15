@@ -2,7 +2,6 @@
 <head>
 
 <!----
-
 /// THEME by pilssken.tumblr.com
 ---
 GNU General Public License v3.0
@@ -10,14 +9,16 @@ https://www.gnu.org/licenses/gpl-3.0-standalone.html
 ---
 no.js photosets by annasthms.tumblr.com & egg.design
 remove tumblr redirects by magnusthemes.tumblr.com
-
 ----->
 
 <title>{Title}</title>
 <meta charset="utf-8">
 <link rel="shortcut icon" href="{Favicon}">
 <link rel="alternate" type="application/rss+xml" href="{RSS}">
+<link href="https://cdn.jsdelivr.net/gh/pilssken/assets/normalize.css" rel="stylesheet">
+<!--fonts-->
 <link href="https://fonts.googleapis.com/css?family={text:font}" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/pilssken/assets/fonts.css" rel="stylesheet">
 <!--options-->
 <meta name="description" content="{MetaDescription}" />
 <!--image options-->
@@ -45,6 +46,8 @@ remove tumblr redirects by magnusthemes.tumblr.com
 <!--text options-->
 <meta name="text:font" content=""/>
 <meta name="text:font size" content="12px"/>
+<meta name="text:title" content="title"/>
+<meta name="text:desc" content="description"/>
 <meta name="text:link one url" content=""/>
 <meta name="text:link one name" content=""/>
 <meta name="text:link two url" content=""/>
@@ -95,29 +98,11 @@ $(this).attr("href", replaceURL);
 
 <style>
 
-/* fonts */
-
-@font-face {
-font-family: 'Kinto Sans';
-src: url(https://cdn.jsdelivr.net/gh/pilssken/assets/fonts/kinto-sans.ttf); }
-
-@font-face {
-font-family: 'Forza Medium';
-src: url(https://cdn.jsdelivr.net/gh/pilssken/assets/fonts/forza-medium.ttf); }
-
-@font-face {
-font-family: 'Forza Book';
-src: url(https://cdn.jsdelivr.net/gh/pilssken/assets/fonts/forza-book.ttf); }
-
-@font-face {
-font-family: 'Forza Light';
-src: url(https://cdn.jsdelivr.net/gh/pilssken/assets/fonts/forza-light.ttf); }
-
 /* basic styling */
 
 :root {
 --text:{color:text};
---darktext:rgba({RGBcolor:text},.6);
+--darktext:rgba({RGBcolor:text},.4);
 --accent:{color:accent};
 --borders:{color:borders};
 --background:{color:background};
@@ -128,7 +113,9 @@ margin:0;
 padding:0;
 font-family:{text:font},Arial,sans-serif;
 font-size:{text:font size};
-line-height:1.7;
+letter-spacing:0.2px;
+line-height:170%;
+word-wrap:break-word;
 color:var(--text);
 background:var(--background) url("{image:background}");
 background-size:{select:bg size};
@@ -139,13 +126,11 @@ background-position:center; }
 a {
 color:var(--accent);
 text-decoration:none; }
-a:hover {
-color:var(--text); }
+a:hover { color:var(--text); }
 
-p { margin:0 0 10px 0; }
+p { margin:1em 0; }
 p:last-child { margin:0; }
 p:empty {display:none; }
-br { display:none; }
 
 blockquote {
 margin-top:5px;
@@ -157,35 +142,51 @@ npf_indented {
 margin:0;
 padding:0; }
 
-
 /* main container */
 
 main {
 width:600px;
 margin:0 auto;
-padding:0; }
+padding:20px 0 0 0; }
 
 /* sidebar */
 
 #sidebar {
-width:600px;
-margin:20px auto 75px auto;
-text-align:center; }
+box-sizing:border-box;
+position:fixed;
+width:165px;
+margin-left:-180px;
+padding:0 20px;
+text-align:justify;
+{block:ifnotTransparentPosts}
+background:var(--foreground);
+{/block:ifnotTransparentPosts} }
 
 #sidebar img {
-max-width:100px;
+max-width:100%;
 margin:0; }
 
 #sidebar h1 {
-margin:5px 0;
+margin:10px 0;
 font-size:120%; }
 
-#sidebar nav a { margin-right:10px; }
-#sidebar nav a:last-child { margin-right:0; }
+#sidebar p {
+margin:10px 0;
+padding:0; }
+
+#sidebar ol {
+list-style-type:none;
+margin:0;
+padding:0; }
+
+#sidebar li {
+margin:5px 0;
+padding:0; }
 
 /* posts */
 
 #content {
+box-sizing:border-box;
 width:600px;
 margin:0 auto;
 padding:0; }
@@ -194,7 +195,7 @@ padding:0; }
 box-sizing:border-box;
 margin:0 0 75px 0;
 {block:ifnotTransparentPosts}
-padding:15px;
+padding:20px;
 background:var(--foreground);
 {/block:ifnotTransparentPosts} }
 
@@ -204,7 +205,7 @@ background:var(--foreground);
 
 /* photos */
 
-.media { margin:0; }
+.media { margin:0 0 -3px 0; }
 
 .post img { max-width:100%; }
 .media img { width:100%; }
@@ -212,7 +213,12 @@ background:var(--foreground);
 figure.tmblr-full { width:100%; }
 figure.tmblr-full img { width:100%; }
 
-.photoset-grid { margin:0 0 15px 0; }
+.npf_row {
+max-width:100%;
+margin-left:0!important;
+margin-right:0!important; }
+
+.photoset-grid { margin:auto 0 auto 0; }
 [photoset-layout] { grid-gap:3px; }
 [photoset-layout] div { cursor:pointer; }
 
@@ -223,16 +229,27 @@ figure.tmblr-full img { width:100%; }
 .caption:empty { display:none; }
 
 .body { margin:10px 0; }
+.body a { border-bottom:1px solid var(--borders); }
+
+.reblog {
+margin:10px 0; }
 
 .reblogger {
-margin:10px 0 13px 0;
+margin:0 0 10px 0;
+padding:15px 0 0 0;
 font-weight:bold;
-line-height:1; }
+line-height:16px;
+border-top:1px solid var(--borders); }
+.reblogger:first-child { border-top:0; }
+.reblogger a { color:var(--text); }
+
 .reblog-avatar {
-display:none;
 margin-right:5px;
-width:25px;
-height:25px;
+width:16px;
+height:16px;
+vertical-align:middle; }
+
+.reblog-username {
 vertical-align:middle; }
 
 /* post info */
@@ -240,14 +257,21 @@ vertical-align:middle; }
 .footer {
 color:var(--darktext);
 {block:ifFooterBorder}
-margin-top:10px;
-padding-top:10px;
+margin-top:15px;
+padding-top:15px;
 border-top:1px solid var(--borders);
 {/block:ifFooterBorder} }
 
+.tags {
+margin-top:3px; }
+
 .tags a {
 color:var(--darktext);
-margin-right:10px; }
+margin-right:5px; }
+
+.tags a:before {
+content:'#';
+margin-right:2px; }
 
 /* permalink page */
 
@@ -268,7 +292,10 @@ display:none; }
 
 /* pagination */
 
-#pag { width:600px; }
+#pag {
+box-sizing:border-box;
+margin:20px 0;
+width:600px; }
  
 </style>
 </head>
@@ -278,13 +305,13 @@ display:none; }
 
 <div id="sidebar"> <!--sidebar-->
   <a href="/"><img src="{image:sidebar}"></a>
-  <h1>{Title}</h1>
-  {block:Description}<p id="description">{Description}</p>{/block:Description}
-  <nav>
-  <a href="{text:link one url}">{text:link one name}</a> 
-  <a href="{text:link two url}">{text:link two name}</a> 
-  <a href="{text:link three url}">{text:link three name}</a> 
-  </nav>
+  <h1>{text:title}</h1>
+  <p id="description">{text:desc}</p>
+  <ol>
+  <li><a href="{text:link one url}">{text:link one name}</a></li>
+  <li><a href="{text:link two url}">{text:link two name}</a></li>
+  <li><a href="{text:link three url}">{text:link three name}</a></li>
+  </ol>
 </div>
 
 <div id="content">{block:Posts} <!--post container-->
@@ -293,15 +320,15 @@ display:none; }
 
 {block:Text}
   <div class="text">
-  {block:Title}<h3>{Title}</h3>{/block:Title}
+  {block:Title}<h2>{Title}</h2>{/block:Title}
   {block:Body}
-  {block:RebloggedFrom}{block:Reblogs}
+  {block:RebloggedFrom}{block:Reblogs}<div class="reblog">
   <div class="reblogger">
     <img class="reblog-avatar" src="{PortraitURL-64}">
     <a class="reblog-username" href="{Permalink}">{Username}</a>
   </div>{/block:Date}
   <div class="body">{Body}</div>
-  {/block:Reblogs}{/block:RebloggedFrom}
+  </div>{/block:Reblogs}{/block:RebloggedFrom}
   {block:NotReblog}<div class="body">{Body}</div>{/block:NotReblog}
   {/block:Body}
   </div>
@@ -352,21 +379,23 @@ display:none; }
   <div class="body">{Caption}</div>
   </div>{/block:NotReblog}
   {block:RebloggedFrom}<div class="caption">{block:Reblogs}
-  <div class="reblogger">
-  <img class="reblog-avatar" src="{PortraitURL-64}">
-  <a class="reblog-username" href="{Permalink}">{Username}</a>
-  </div>
-  <div class="body">{Body}</div>
+    <div class="reblogger">
+    <img class="reblog-avatar" src="{PortraitURL-64}">
+    <a class="reblog-username" href="{Permalink}">{Username}</a>
+    </div>
+    <div class="body">{Body}</div>
   {/block:Reblogs}</div>{/block:RebloggedFrom}
 {/block:Caption}
 
 {block:Date}
 <div class="footer">
-    <a href="{Permalink}">[{DayOfMonthWithZero}.{MonthNumberWithZero}]</a> {block:NoteCount}({NoteCount}){/block:NoteCount}
-    <span style="float:right"><a href="{ReblogURL}">[reblog]</a></span>
+    <a href="{Permalink}">[{DayOfMonthWithZero}.{MonthNumberWithZero}]</a> {block:NoteCount}&nbsp;&nbsp;({NoteCount}){/block:NoteCount}
+    <span style="float:right">
+      <a href="{ReblogURL}">[reblog]</a>
+    </span>
 </div>
 {block:ifTags}{block:HasTags}<div class="tags">
-    {block:Tags}<a href="{TagURL}">#{Tag}</a> {/block:Tags}
+    {block:Tags}<a href="{TagURL}">{Tag}</a> {/block:Tags}
 </div>{/block:HasTags}{/block:ifTags}
 {/block:Date}
 
@@ -383,15 +412,17 @@ display:none; }
 {block:Pagination}
 <div id="pag">
   {block:PreviousPage}
-  <a style="float:left;" href="{PreviousPage}">back</a>
+  <a style="float:left;" href="{PreviousPage}">🡸</a>
   {/block:PreviousPage}
   {block:NextPage}
-  <a style="float:right;" href="{NextPage}">next</a>
+  <a style="float:right;" href="{NextPage}">🡺</a>
   {/block:NextPage}
 </div>
 {/block:Pagination}
 
 </main>
+
+<br><br><br>
 
 </body>
 </html>
