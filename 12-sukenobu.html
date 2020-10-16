@@ -21,6 +21,7 @@ responsive iframes by nouvae.tumblr.com
 <meta name="image:favicon" content=""/>
 <meta name="image:background" content=""/>
 <meta name="image:sidebar" content=""/>
+<meta name="image:extra" content=""/>
 <!--color options-->
 <meta name="color:background" content="#222"/>
 <meta name="color:foreground" content="#333"/>
@@ -41,12 +42,6 @@ responsive iframes by nouvae.tumblr.com
 <meta name="text:font size" content="12px"/>
 <meta name="text:side title" content="title"/>
 <meta name="text:description" content="desc"/>
-<meta name="text:link one url" content=""/>
-<meta name="text:link one name" content=""/>
-<meta name="text:link two url" content=""/>
-<meta name="text:link two name" content=""/>
-<meta name="text:link three url" content=""/>
-<meta name="text:link three name" content=""/>
 <meta name="text:extra img width" content="100%"/>
 <meta name="text:extra img bottom" content="-5px">
 <meta name="text:extra img right" content="0">
@@ -214,6 +209,11 @@ footer .tags a:before { content:'#'; margin-right:2px; }
 ol.notes { list-style-type:none; margin:0; padding:15px 20px; border-top:1px solid {color:borders}; }
 ol.notes li.note { display:block; margin:0 0 5px 0; padding:0; }
 ol.notes li.note img { display:none; }
+        
+#xtraimg {
+position:fixed; bottom:{text:extra img bottom}; right:{text:extra img right}; z-index:999999999; }
+
+#xtraimg img { width:{text:extra img width}; }
 
 a#snake { position:fixed; bottom:10px; left:10px; }
 
@@ -223,6 +223,8 @@ a#snake { position:fixed; bottom:10px; left:10px; }
 <body>
 
 <a id="snake" href="https://pilssken.tumblr.com/">theme</a>
+
+<div id="xtraimg"><img src="{image:extra image}"></div>
 
 <main>
 
