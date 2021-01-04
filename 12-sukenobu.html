@@ -15,13 +15,12 @@ responsive iframes by nouvae.tumblr.com
 <link rel="shortcut icon" href="{image:favicon}">
 <link rel="alternate" type="application/rss+xml" href="{RSS}">
 <link href="https://ghcdn.rawgit.org/pilssken/assets/master/snakebite.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family={text:font}" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family={text:font}|{text:accent font}" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 <!--image options-->
 <meta name="image:favicon" content=""/>
 <meta name="image:background" content=""/>
 <meta name="image:sidebar" content=""/>
-<meta name="image:extra" content=""/>
 <!--color options-->
 <meta name="color:background" content="#222"/>
 <meta name="color:foreground" content="#333"/>
@@ -39,6 +38,7 @@ responsive iframes by nouvae.tumblr.com
 <meta name="select:bg attachment" content="scroll"/>
 <!--text options-->
 <meta name="text:font" content=""/>
+<meta name="text:accent font" content=""/>
 <meta name="text:font size" content="12px"/>
 <meta name="text:side title" content="title"/>
 <meta name="text:description" content="desc"/>
@@ -162,7 +162,7 @@ margin:0 0 10px 0; }
 
 .quote {
 margin:0 0 5px 0;
-font-family:{text:font},sans-serif;
+font-family:{text:accent font},{text:font},sans-serif;
 font-style:italic; }
 
 .caption {
@@ -209,11 +209,6 @@ footer .tags a:before { content:'#'; margin-right:2px; }
 ol.notes { list-style-type:none; margin:0; padding:15px 20px; border-top:1px solid {color:borders}; }
 ol.notes li.note { display:block; margin:0 0 5px 0; padding:0; }
 ol.notes li.note img { display:none; }
-        
-#xtraimg {
-position:fixed; bottom:{text:extra img bottom}; right:{text:extra img right}; z-index:999999999; }
-
-#xtraimg img { width:{text:extra img width}; }
 
 a#snake { position:fixed; bottom:10px; left:10px; }
 
@@ -223,8 +218,6 @@ a#snake { position:fixed; bottom:10px; left:10px; }
 <body>
 
 <a id="snake" href="https://pilssken.tumblr.com/">theme</a>
-
-<div id="xtraimg"><img src="{image:extra image}"></div>
 
 <main>
 
