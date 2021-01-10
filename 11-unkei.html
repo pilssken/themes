@@ -28,14 +28,14 @@ responsive iframes by nouvae.tumblr.com
 <!--color options-->
 <meta name="color:text" content="#000"/>
 <meta name="color:links" content="#00f"/>
-<meta name="color:background" content="#007b7b"/>
-<meta name="color:foreground" content="#bdbdbd"/>
-<meta name="color:dark foreground" content="#A8A8A8"/>
+<meta name="color:background" content="#008080"/>
+<meta name="color:foreground" content="#c0c0c0"/>
+<meta name="color:dark foreground" content="#808080"/>
 <meta name="color:gradient 1" content="#183174"/>
 <meta name="color:gradient 2" content="#a0c3eb"/>
 <meta name="color:titlebar text" content="#fff"/>
-<meta name="color:light borders" content="#fff"/>
-<meta name="color:dark borders" content="#7b7b7b"/>
+<meta name="color:light borders" content="#dfdfdf"/>
+<meta name="color:dark borders" content="#808080"/>
 <!--selection options-->
 <meta name="select:bg size" content="auto"/>
 <meta name="select:bg size" content="cover"/>
@@ -153,6 +153,7 @@ body {
 font:{text:font size} {text:font},Arial,sans-serif;
 color:var(--text);
 letter-spacing:0.2px;
+-webkit-font-smoothing:none;
 word-wrap:break-word;
 background:var(--background) url("{image:background}");
 background-size:{select:bg size};
@@ -232,9 +233,10 @@ max-width:100%; }
 
 #sidebar .desc {
 margin:0;
-padding:2px 5px 4px 5px;
+padding:4px 5px 4px 5px;
 font-size:90%;
 text-align:{select:description align};
+line-height:1.25;
 border-top:1px solid var(--light-border);
 border-left:1px solid var(--light-border);
 border-right:1px solid var(--dark-border);
@@ -370,12 +372,16 @@ vertical-align:middle; }
 
 .titlebar {
 margin:0 0 2px 0;
-padding:5px 5px 7px 5px;
-vertical-align:middle;
 color:{color:titlebar text};
 font-size:80%;
 line-height:1;
-background:linear-gradient(to right,{color:gradient 1},{color:gradient 2}); }
+padding:3px 4px 3px 5px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:linear-gradient(90deg,{color:gradient 1},{color:gradient 2}); }
+
+.titlebar a { font-weight:bold; }
 
 .footer {
 box-sizing:border-box;
@@ -481,9 +487,9 @@ border-bottom:1px solid transparent; }
 
 {block:Date}
 <div class="titlebar">
-  <a href="{Permalink}" title="{NoteCountwithLabel}">{TimeAgo}</a>
-  {block:RebloggedFrom} • reblogged from <a href="{ReblogParentURL}">{ReblogParentName}</a>{/block:RebloggedFrom}
-  <span style="float:right"><a href="{ReblogURL}">reblog</a></span>
+  <span><a href="{Permalink}" title="{NoteCountwithLabel}">{TimeAgo}</a>
+  {block:RebloggedFrom} • reblogged from <a href="{ReblogRootURL}">{ReblogRootName}</a> via <a href="{ReblogParentURL}">{ReblogParentName}</a>{/block:RebloggedFrom}</span>
+  <span><a href="{ReblogURL}">reblog</a></span>
 </div>
 {/block:Date}
 
