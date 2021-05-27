@@ -37,6 +37,7 @@ npf photo fix by magnusthemes.tumblr.com
 <meta name="color:link glow" content="#e7e7e7"/>
 <meta name="color:link glow text" content="#e7e7e7"/>
 <!--boolean options-->
+<meta name="if:bg blur"/>
 <meta name="if:link shadow"/>
 <meta name="if:link glow"/>
 <meta name="if:post container"/>
@@ -48,6 +49,7 @@ npf photo fix by magnusthemes.tumblr.com
 <meta name="if:avi border"/>
 <meta name="if:footer lowercase"/>
 <meta name="if:footer link underline"/>
+<meta name="if:japanese date"/>
 <meta name="if:date2"/>
 <meta name="if:notes"/>
 <meta name="if:via source"/>
@@ -79,6 +81,8 @@ npf photo fix by magnusthemes.tumblr.com
 <!--text options-->
 <meta name="text:font" content="Arial"/>
 <meta name="text:font size" content="12px"/>
+<meta name="text:bg opacity" content="0.1"/>
+<meta name="text:container opacity" content=".5px"/>
 <meta name="text:sidebar width" content="175px"/>
 <meta name="text:avi size" content="auto"/>
 <meta name="text:description" content="desc"/>
@@ -141,7 +145,8 @@ font-family:{text:font},sans-serif;
 font-size:{text:font size};
 letter-spacing:0.75px;
 color:{color:text};
-word-wrap:break-word; }
+word-wrap:break-word;
+background:{color:background}; }
 
 #bg {
 position:fixed;
@@ -154,6 +159,9 @@ background-size:{select:bg size};
 background-repeat:{select:bg repeat};
 background-attachment:{select:bg attachment};
 background-position:center;
+{block:ifBGBlur}filter:blur({text:bg blur});{/block:ifBGBlur}
+object-fit:cover!important;
+opacity:{text:bg opacity};
 z-index:-9999999999; }
 
 a {
@@ -192,8 +200,7 @@ padding:0;
 text-align:{select:sidebar align};
 {block:ifSidebarContainer}
   padding:10px;
-  background:{color:foreground};
-  background-image:url('{image:foreground}');
+  background:rgba({RGBcolor:foreground},{text:container opacity}) url('{image:foreground}');
   border:1px solid {color:borders};
   {block:ifShadows}
   box-shadow:2px 2px {color:borders};
@@ -219,8 +226,7 @@ padding:0;
 text-align:{select:description align};
 {block:ifDescContainer}
   padding:10px;
-  background:{color:foreground 2};
-  background-image:url('{image:foreground 2}');
+  background:rgba({RGBcolor:foreground 2},{text:container opacity}) url('{image:foreground 2}');
   border:1px solid {color:borders};
   {block:ifShadows}
   box-shadow:2px 2px {color:shadows};
@@ -242,8 +248,7 @@ padding:0;
 overflow:hidden;
 {block:ifPostContainer}
   padding:10px;
-  background:{color:foreground};
-  background-image:url('{image:foreground}');
+  background:rgba({RGBcolor:foreground},{text:container opacity}) url('{image:foreground}');
   border:1px solid {color:borders};
   {block:ifShadows}
   box-shadow:2px 2px {color:shadows};
@@ -308,15 +313,14 @@ font-style:italic; }
 
 .caption {
 display:block;
-margin:10px 0;
+margin:15px 0;
 {block:ifFooterContainer}
-  margin:10px 0 0 0;
+  margin:15px 0 0 0;
   padding:0 10px;
 {/block:ifFooterContainer}
 {block:ifCaptionContainer}
   padding:10px;
-  background:{color:foreground 2};
-  background-image:url('{image:foreground 2}');
+  background:rgba({RGBcolor:foreground 2},{text:container opacity}) url('{image:foreground 2}');
   border:1px solid {color:borders};
   {block:ifShadows}
   box-shadow:2px 2px {color:shadows};
@@ -353,13 +357,15 @@ display:block;
 margin:1em 0 0 0;
 padding:0;
 text-align:{select:footer align};
+{block:ifnotFooterLowercase}
+  text-transform:uppercase;
+{/block:ifnotFooterLowercase}
 {block:ifFooterLowercase}
   text-transform:lowercase;
 {/block:ifFooterLowercase}
 {block:ifFooterContainer}
   padding:10px;
-  background:{color:foreground 2};
-  background-image:url('{image:foreground 2}');
+  background:rgba({RGBcolor:foreground 2},{text:container opacity}) url('{image:foreground 2}');
   border:1px solid {color:borders};
   {block:ifShadows}
   box-shadow:2px 2px {color:shadows};
@@ -424,7 +430,7 @@ left:1em; }
 
 <div id="bg"></div>
 
-<a id="snake" href="https://pilssken.tumblr.com/">theme</a>
+<a id="snake" href="https://fatalfuries.tumblr.com/">theme</a>
 
 <main>
 
@@ -533,7 +539,7 @@ left:1em; }
 <!-- FOOTERS -->
 {block:Date}
 <div class="footer">
-  <div class="date"><a href="{Permalink}"><b>{Year}年{ShortMonth}{DayOfMonth}日</b></a>{block:ifDate2} ({TimeAgo}){/block:ifDate2}</div>
+  <div class="date">{block:ifJapaneseDate}<a href="{Permalink}">{Year}年{ShortMonth}{DayOfMonth}日</a>{/block:ifJapaneseDate}{block:ifnotJapaneseDate}<a href="{Permalink}">{DayOfMonth} {ShortMonth} {Year}</a>{/block:ifnotJapaneseDate}{block:ifDate2} ({TimeAgo}){/block:ifDate2}</div>
   {block:ifNotes}<div class="notecount"> {text:footer divider} <a href="{Permalink}">{NoteCountwithLabel}</a></div>{/block:ifNotes}
   {block:ifViaSource}{block:RebloggedFrom}<div class="viasrc"> {text:footer divider} <a href="{ReblogParentURL}">VIA</a>/<a href="{ReblogRootURL}">SRC</a></div>{/block:RebloggedFrom}{/block:ifViaSource}
   {block:ifReblog}<div class="reblog"> {text:footer divider} <a href="{ReblogURL}">REBLOG</a></div>{/block:ifReblog}
