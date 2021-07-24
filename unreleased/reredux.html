@@ -2,14 +2,14 @@
 <head>
 
 <!--
-ISSHOU THEME by pilssken.tumblr.com
+REREDUX THEME by pilssken.tumblr.com
 ---
 CREATIVE COMMONS ZERO (PUBLIC DOMAIN DEDICATION)
 creativecommons.org/publicdomain/zero/1.0
 ---
 no.js photosets by annasthms.tumblr.com & egg.design
 responsive iframes by nouvae.tumblr.com
-npf photo fix by magnusthemes.tumblr.com
+npf photo fix by glenthemes.tumblr.com
 -->
 
 <title>{Title}</title>
@@ -296,11 +296,11 @@ vertical-align:middle; }
 .footer {
 display:block;
 margin:0;
-padding:10px; }
+padding:15px; }
 
 .permalink { display:flex; justify-content:space-between; }
 
-.tags { margin:0; }
+.tags { margin:5px 0 0 0; }
 .tags b { margin-right:3px; }
 .tags a:before { content:'#'; margin-right:1px; }
 .tags a { margin-right:3px; text-decoration:none; }
@@ -463,8 +463,8 @@ left:1em; }
 {block:Date}
 <div class="footer">
   <div class="permalink">
-    <a href="{Permalink}"><b>{TimeAgo}</b> ({NoteCount})</a>
-    <a href="{ReblogURL}">reblog</a>
+    <div class="date"><a href="{Permalink}"><b>{TimeAgo}</b></a>{block:RebloggedFrom}&nbsp;&nbsp;•&nbsp;&nbsp;<a href="{ReblogParentURL}" title="{ReblogParentName}">via</a> + <a href="{ReblogRootURL}" title="{ReblogRootName}">src</a>{/block:RebloggedFrom}</div>
+    <Div class="reblog"><a href="{ReblogURL}">reblog</a></div>
   </div>
   {block:HasTags}<div class="tags">{block:Tags}<a href="{TagURL}">{Tag}</a>{/block:Tags}</div>{/block:HasTags}
 </div>
