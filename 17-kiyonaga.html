@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!--
+KIYONAGA THEME by snake @ fatalfuries.tumblr.com
+---
+CREATIVE COMMONS ZERO (PUBLIC DOMAIN DEDICATION)
+creativecommons.org/publicdomain/zero/1.0
+---
+no.js photosets by annasthms.tumblr.com & egg.design
+npf photo fix by glenthemes.tumblr.com
+icons by cappucicons.com
+-->
+
+<title>{Title}</title>
+<meta charset="utf-8">
+<link rel="shortcut icon" href="{Favicon}">
+<link rel="alternate" type="application/rss+xml" href="{RSS}">
+<link href="https://cdn.jsdelivr.net/gh/pilssken/snakebite/snakebite.css" rel="stylesheet">
+<!--image options-->
+<meta name="image:background" content=""/>
+<meta name="image:sidebar" content=""/>
+<!--color options-->
+<meta name="color:background" content="#3b627e"/>
+<meta name="color:foreground" content="#1a1a1a"/>
+<meta name="color:text" content="#494949"/>
+<meta name="color:borders" content="#494949"/>
+<meta name="color:accent" content="#FF7F7F"/>
+<!--boolean options-->
+<meta name="if:pixel bg" />
+<meta name="if:borders" />
+<meta name="if:rounded corners" />
+<meta name="if:circle avi" />
+<!--selection options-->
+<meta name="select:bg size" content="auto"/>
+<meta name="select:bg size" content="cover"/>
+<meta name="select:bg size" content="contain"/>
+<meta name="select:bg repeat" content="repeat"/>
+<meta name="select:bg repeat" content="no-repeat"/>
+<meta name="select:bg repeat" content="round"/>
+<meta name="select:bg attachment" content="fixed"/>
+<meta name="select:bg attachment" content="scroll"/>
+<!--text options-->
+<meta name="text:font" content="Arial"/>
+<meta name="text:font size" content="12px"/>
+<meta name="text:title" content="title"/>
+<meta name="text:description" content="desc"/>
+<meta name="text:opacity" content="1"/>
+
+<!--jquery-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<!--google fonts-->
+<link href="https://fonts.googleapis.com/css?family={text:font}" rel="stylesheet">
+
+<!--cappuccicons-->
+<script src="//pull.cappuccicons.com/cpf.js"></script> 
+
+<!--no .js photosets-->
+<link href="https://static.tumblr.com/0podkko/oDSpg7y88/photosets.css" rel="stylesheet">
+<script>
+function gatherData(images, arr) {
+for (let i = 0; i < images.length; i++) {
+let currentData = {
+"width": images[i].getAttribute('data-width'),
+"height": images[i].getAttribute('data-height'),
+"low_res": images[i].getAttribute('data-lowres'),
+"high_res": images[i].getAttribute('data-highres')
+};
+arr.push(currentData);
+}
+}
+function getIndex(elem) {
+let i = 0;
+while( (elem = elem.previousElementSibling) != null ) i++;
+return i;
+}
+function lightbox(elem) {
+let currentPhotoset = elem.parentNode;
+let photosetPhotos = currentPhotoset.getElementsByTagName('div');
+let data = [];
+gatherData(photosetPhotos, data);
+Tumblr.Lightbox.init(data, getIndex(elem) + 1);
+}
+</script>
+
+<!--style-my-tooltips-->
+<script src="https://static.tumblr.com/iuw14ew/VSQma1786/jquery.style-my-tooltips.js"></script>
+<script>
+(function($){
+$(document).ready(function(){
+$("[title]").style_my_tooltips({
+tip_follows_cursor:true,
+tip_delay_time:0,
+tip_fade_speed:0,
+attribute:"title"
+});
+});
+})(jQuery);
+</script>
+
+<!--npf fixes-->
+<script src="//npf-images-v3.github.io/script.js"></script>
+<link rel="stylesheet" href="//npf-images-v3.github.io/recon.css">
+<style tmblr-npf>
+:root {
+--NPF-Caption-Spacing:1em;
+--NPF-Image-Spacing:1px; }
+</style>
+        
+<style type="text/css">
+
+/* basics ### */
+
+body {
+font-family:{text:font};
+font-size:{text:font size};
+color:{color:text};
+line-height:170%;
+background:{color:background}; }
+
+#bg {
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+{block:ifPixelBG}image-rendering:crisp-edges;{/block:ifPixelBG}
+background:{color:background} url('{image:background}');
+background-size:{select:bg size};
+background-repeat:{select:bg repeat};
+background-attachment:{select:bg attachment};
+background-position:center;
+z-index:-9999999999; }
+
+article header a, .tags a, .buttons a { text-decoration:none; }
+
+p { margin:10px 0; }
+
+blockquote {
+margin:15px 0 15px 10px;
+padding-left:15px;
+border-left:solid 4px {color:text}; }
+
+blockquote:last-child { margin-bottom:0; }
+
+#s-m-t-tooltip {
+max-width:300px;
+margin:24px 14px 7px 12px;
+padding:5px 10px;
+font-family:{text:font};
+color:{color:text};
+background:{color:foreground};
+border:1px solid {color:borders};
+{block:ifRoundedCorners}border-radius:3px;{/block:ifRoundedCorners}
+z-index:9999; }
+
+/* main container */
+
+main { width:500px; margin:30px auto; padding:0; }
+
+/* sidebar */
+
+aside {
+display:flex;
+flex-direction:row;
+justify-content:center;
+align-items:center;
+margin-bottom:75px;
+padding:0;
+width:100%;
+{block:ifSidebarHeader}
+  background:rgba({RGBcolor:foreground},{text:opacity});
+  {block:ifBorders}border:1px solid {color:borders};{/block:ifBorders}
+  {block:ifRoundedCorners}border-radius:3px;{/block:ifRoundedCorners}
+{/block:ifSidebarHeader} }
+
+aside img {
+max-width:100px;
+{block:ifCircleAvi}border-radius:100%;{/block:ifCircleAvi} }
+
+aside section {
+padding:15px;
+{block:ifnotSidebarHeader}
+  margin:0 auto;
+  width:max-content;
+  {block:ifBorders}border:1px solid {color:borders};{/block:ifBorders}
+  {block:ifRoundedCorners}border-radius:3px;{/block:ifRoundedCorners}
+{/block:ifnotSidebarHeader} }
+
+aside section h1 {
+margin:0;
+font-size:1.4em;
+font-weight:bold;
+line-height:1;
+letter-spacing:1px; }
+
+/* posts */
+
+article {
+margin:0 auto 75px auto;
+padding:0;
+background:rgba({RGBcolor:foreground},{text:opacity});
+{block:ifBorders}border:1px solid {color:borders};{/block:ifBorders}
+{block:ifRoundedCorners}border-radius:5px;{/block:ifRoundedCorners} }
+
+article h1 { margin-top:0; }
+
+figure:first-child { margin-top:0; }
+figure:last-child { margin-bottom:0; }
+figure:only-child { margin:0; }
+
+/* images */
+
+.media img { width:100%; border-bottom:1px solid {color:borders}; }
+figure.tmblr-full img { max-width:100%; }
+
+.photoset-grid { margin:0; border-bottom:1px solid {color:borders}; }
+[photoset-layout] { grid-gap:0px; }
+[photoset-layout] div { cursor:pointer; }
+.boooob { margin:5px 0!important; }
+.boooob:last-child { margin-bottom:0!important; }
+
+/* video */
+
+.tumblr_video_iframe { width:100%!important; }
+
+/* audio */
+
+.tumblr_audio_player { width:100%!important; height:85px!important; border-bottom:1px solid {color:borders}; }
+.spotify_audio_player { width:100%!important; height:80px!important; }
+.bandcamp_audio_player { width:100%!important; height:120px!important; }
+.soundcloud_audio_player { width:100%!important; height:85px!important; }
+
+/* quotes */
+
+.quote, p.npf_quote { font-size:1.8em!important; font-style:italic; }
+.quotesource, p.npf_quote+p { margin:0; padding:0; }
+
+/* links */
+
+.link { margin:0; padding:0; }
+.link h1 { margin:0; }
+
+/* chat */
+
+.chat { padding:0; }
+
+/* asks */
+
+.question {
+margin:0 0 10px 0;
+padding:10px;
+color:{color:text};
+background:rgba({RGBcolor:foreground},{text:opacity});
+{block:ifBorders}border:1px solid {color:borders};{/block:ifBorders}
+{block:ifRoundedCorners}border-radius:5px;{/block:ifRoundedCorners} }
+
+.question p { margin-top:5px; }
+
+/* captions */
+
+.caption {
+margin:0;
+padding:15px;
+border-bottom:1px solid {color:borders}; }
+.caption:empty { display:none; }
+
+.reblogger { margin:15px 0; padding:0; line-height:1; }
+.reblogger:first-child { margin:5px 0 15px 0; padding:0; }
+
+.reblog-avatar { display:none; }
+.reblog-username { font-weight:bold; }
+.reblog-username a { text-decoration:none; border:0; }
+
+/* post info */
+
+article header {
+margin:0;
+padding:15px;
+display:flex;
+justify-content:space-between;
+line-height:1;
+text-transform:lowercase;
+border-bottom:1px solid {color:borders}; }
+
+footer {
+margin:0;
+padding:15px;
+display:flex;
+justify-content:space-between;
+line-height:1; }
+
+.tags a { margin-right:5px; }
+.tag { display:inline; }
+.buttons i { margin-left:5px; }
+.like-button-parent { display:inline-block!important; position:relative; }
+.like-button-parent .like_button { position:absolute; top:0; opacity:0; }
+.like-button-parent .like_button.liked + span { color:{color:accent}; }
+
+/* permalink page */
+
+ol.notes { list-style-type:none; margin:0; padding:0; }
+ol.notes li.note img { display:none; }
+ol.notes li.note { display:block; margin:0; padding:0; }
+
+/* pagination */
+
+#pag {
+display:flex;
+justify-content:space-between;
+align-items:center; }
+
+#pag a {
+padding:10px;
+line-height:1;
+background:rgba({RGBcolor:foreground},{text:opacity});
+{block:ifBorders}border:1px solid {color:borders};{/block:ifBorders}
+{block:ifRoundedCorners}border-radius:5px;{/block:ifRoundedCorners} }
+
+/* credit */
+
+#snake {
+position:fixed;
+bottom:1em;
+left:1em;
+padding:10px;
+line-height:1;
+background:rgba({RGBcolor:foreground},{text:opacity});
+{block:ifBorders}border:1px solid {color:borders};{/block:ifBorders}
+{block:ifRoundedCorners}border-radius:5px;{/block:ifRoundedCorners} }
+
+{CustomCSS}
+</style>
+</head>
+<body>
+
+<div id="bg"></div>
+
+<main>
+
+<aside>
+  <a href="/"><img src="{image:sidebar}"></a>
+  <section>
+    <h1><a href="/">{text:title}</a></h1>
+    <p>{text:description}</p>
+  </section>
+</aside>
+
+{block:Posts inlineMediaWidth="1280" inlineNestedMediaWidth="1280"}
+
+<article post-type="{PostType}" post-id="{PostID}">
+
+{block:Date}<header>
+  <span class="date">
+    <a href="{Permalink}" title="{NoteCountwithLabel}"><b>{DayOfMonth} {ShortMonth} {Year}</b>・{12HourwithZero}:{Minutes} {CapitalAmPm}</a>
+  </span>
+  <span class="reblogs">{block:RebloggedFrom}<a href="{ReblogParentURL}" title="{ReblogParentName}">via</a>・<a href="{ReblogRootURL}" title="{ReblogRootName}">op</a>{/block:RebloggedFrom}{block:ContentSource}{block:RebloggedFrom}・{/block:RebloggedFrom}<a href="{SourceURL}">source</a>{/block:ContentSource}</span>
+</header>{/block:Date}
+
+{block:Text}
+  <div class="caption">
+  {block:Title}<h1>{Title}</h1>{/block:Title}
+  {block:Body}
+  {block:RebloggedFrom}
+  {block:Reblogs}
+    {block:Date}<div class="reblogger source-head">
+      <img class="reblog-avatar" src="{PortraitURL-64}">
+      <a class="reblog-username" href="{Permalink}">{Username}</a>
+    </div>{/block:Date}
+    <div class="captionbody">{Body}</div>
+  {/block:Reblogs}
+  {/block:RebloggedFrom}
+  {block:NotReblog}
+    <div class="captionbody">{Body}</div>
+  {/block:NotReblog}
+  {/block:Body}
+  </div>
+{/block:Text}
+
+{block:Photo}
+  <div class="media">
+  {LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}"/>{LinkCloseTag}
+  </div>
+{/block:Photo}
+
+{block:Photoset}
+  <div class="photoset-grid" photoset-layout="{PhotosetLayout}">
+    {block:Photos}<div data-width="{PhotoWidth-HighRes}" data-height="{PhotoHeight-HighRes}" data-lowres="{PhotoURL-500}" data-highres="{PhotoURL-HighRes}" onclick="lightbox(this)"><img src="{PhotoURL-HighRes}" />
+    </div>{/block:Photos}
+  </div>
+{/block:Photoset}
+
+{block:Quote}
+  <div class="quote">"{Quote}"</div>
+  {block:Source}<div class="quotesource">&#8212;&nbsp;&nbsp;{Source}</div>{/block:Source}
+{/block:Quote}
+
+{block:Link}
+  <div class="link"><a href="{URL}"><h1>{Name} →</a></h1></div>
+{/block:Link}
+
+{block:Chat}
+  {block:Title}<div class="title">{Title}</div>{/block:Title}
+  <div class="chat">
+  {block:Lines}
+    <div class="{Alt} user_{UserNumber}">
+      {block:Label}<b>{Label}</b>{/block:Label}&nbsp;{Line}
+    </div>
+  {/block:Lines}
+  </div>
+{/block:Chat}
+
+{block:Video}
+  <div class="video">{Video-500}</div>
+{/block:Video}
+
+{block:Audio}
+  <div class="audio">
+    {block:AudioEmbed}{AudioEmbed}{/block:AudioEmbed}
+  </div>
+{/block:Audio}
+
+{block:Answer}
+  <div class="question"><b>{Asker}</b>: {Question}</div>
+  <div class="caption">{Answer}</div>
+{/block:Answer}
+
+{block:Caption}
+  {block:NotReblog}<div class="caption">
+    <div class="captionbody">{Caption}</div>
+  </div>{/block:NotReblog}
+  {block:RebloggedFrom}<div class="caption">{block:Reblogs}
+    <div class="reblogger source-head">
+      <img class="reblog-avatar" src="{PortraitURL-64}">
+      <a class="reblog-username" href="{Permalink}">{Username}</a>
+    </div>
+    <div class="captionbody">{Body}</div>
+  {/block:Reblogs}</div>{/block:RebloggedFrom}
+{/block:Caption}
+
+{block:Date}
+
+<footer>
+  {block:HasTags}<div class="tags">{block:Tags}<span class="tag"><a href="{TagURL}">#{Tag}</a> </span>{/block:Tags}</div>{/block:HasTags}
+  <span class="buttons"><a href="{ReblogURL}"><i class="cp cp-reblog-alt"></i></a> <div class="like-button-parent">{LikeButton color="gray" size="12"}<span><i class="cp cp-heart-o"></i></span></div></span>
+</footer>
+
+{block:PermalinkPage}
+{block:NoteCount}
+{block:PostNotes}{PostNotes}{/block:PostNotes}
+{/block:NoteCount}
+{/block:PermalinkPage}
+
+{/block:Date}
+
+</article>
+
+{block:ContentSource}
+<!-- {SourceURL}
+{block:SourceLogo}<img src="{BlackLogoURL}"width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" />{/block:SourceLogo}
+{block:NoSourceLogo}{SourceLink}{/block:NoSourceLogo} -->
+{/block:ContentSource}
+<!--{block:NoRebloggedFrom}{block:RebloggedFrom}{ReblogParentName}{/block:RebloggedFrom}{/block:NoRebloggedFrom} -->
+
+{/block:Posts}
+
+{block:Pagination}
+  <div id="pag">
+  {block:PreviousPage}
+    <a href="{PreviousPage}">previous page</a>
+  {/block:PreviousPage}
+  {block:NextPage}
+    <a href="{NextPage}">next page</a>
+  {/block:NextPage}
+  </div>
+  <br><br><br>
+{/block:Pagination}
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="https://static.tumblr.com/qxrkgx6/q6kmgn2w2/jquery-1.8.3.min.js"><\/script>')</script>
+
+</main>
+
+<a id="snake" href="https://fatalfuries.tumblr.com/">theme</a>
+
+</body>
+</html>
