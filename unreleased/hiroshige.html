@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<head>
+
+<!--
+HIROSHIGE THEME by SNAKE @ pilssken.tumblr.com
+CREATIVE COMMONS ZERO (PUBLIC DOMAIN DEDICATION)
+creativecommons.org/publicdomain/zero/1.0
+-->
+
+<meta charset="utf-8">
+<link rel="shortcut icon" href="{Favicon}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/pilssken/snakebite/snakebite.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Murecho:wght@300;400;500&display=swap" rel="stylesheet"> 
+<title>{text:title}</title>
+<!--color options-->
+<meta name="image:sidebar" content=""/>
+<!--color options-->
+<meta name="color:background" content="#080917"/>
+<meta name="color:text" content="#5dbfa8"/>
+<meta name="color:accent" content="#8568dc"/>
+<meta name="color:borders" content="#5dbfa8"/>
+<meta name="color:button 1" content="#5dbfa8"/>
+<meta name="color:button 2" content="#5dbfa8"/>
+<meta name="color:button 3" content="#5dbfa8"/>
+<meta name="color:button 4" content="#5dbfa8"/>
+<!--text options-->
+<meta name="text:title" content="title"/>
+<meta name="text:description" content="description"/>
+
+<style>
+
+body {
+font-family:'Murecho',sans-serif;
+font-size:16px;
+color:{color:text};
+letter-spacing:0.5px;
+font-weight:100;
+background:{color:background}; }
+
+a { color:{color:accent}; font-weight:400; text-decoration:none; }
+a:hover { color:{color:text}; }
+
+p { margin:12px 0; }
+h1 { font-weight:500; }
+h1:first-child { margin-top:0; }
+li { margin-left:-10px; padding-left:10px; }
+
+main { margin:0 auto; width:500px; }
+
+aside { margin: 50px 0 125px 0; text-align:center; }
+aside img { padding:5px; margin-bottom:15px; width:100px; border:1px solid {color:borders}; }
+aside p { margin-top:0; }
+
+article {
+display:block;
+margin:0 0 125px 0;
+width:100%;
+border:1px solid {color:borders};
+border-radius:5px; }
+
+article .caption { padding:15px; }
+
+article header {
+display:flex;
+flex-direction:row;
+flex-wrap:nowrap;
+justify-content:space-between;
+align-items:center;
+padding:15px;
+line-height:1;
+border-bottom:1px solid {color:borders}; }
+
+article header a { font-weight:500; color:{color:borders}; }
+
+.buttons { vertical-align:middle; display:flex; flex-flow:row nowrap; }
+.button { margin-left:5px; width:10px; height:10px; background:{color:accent}; }
+.button:hover { background:{color:text}; }
+.btn1 { background:{color:button 1}; }
+.btn2 { background:{color:button 2}; }
+.btn3 { background:{color:button 3}; }
+.btn4 { background:{color:button 4}; }
+
+footer { 
+padding:10px 15px 15px 15px;
+color:{color:borders};
+border-top:1px solid {color:borders}; }
+
+footer a { margin-right:10px; }
+footer a:last-child { margin-right:0; }
+
+.reblogger { margin:15px 0 5px 0; }
+.reblogger:first-child { margin:0 0 5px 0; }
+.reblog-username { font-weight:700; }
+.reblog-avatar { display:none; }
+
+#pag { display:flex; justify-content:space-between; align-items:center; }
+
+</style>
+</head>
+<body>
+
+<main>
+
+<aside>
+  <a href="/"><img src="{image:sidebar}"></a>
+  <p>{text:description}</p>
+</aside>
+
+{block:Posts}
+<article>
+
+{block:Date}
+<header>
+  <div class="date">
+    <a href="{Permalink}">{Year}.{MonthNumberWithZero}.{DayOfMonthWithZero}</a>
+  </div>
+  <div class="buttons">
+    {block:ContentSource}<a href="{ReblogURL}" title="source"><div class="button btn1"></div></a>{/block:ContentSource}
+    {block:RebloggedFrom}
+      <a href="{ReblogRootURL}" title="originally posted from {ReblogRootName}"><div class="button btn2"></div></a>
+      <a href="{ReblogParentURL}" title="reblogged from {ReblogParentName}"><div class="button btn3"></div></a>
+    {/block:RebloggedFrom}
+    <a href="{ReblogURL}" title="reblog"><div class="button btn4"></div></a>
+  </div>
+</header>
+{/block:Date}
+
+{block:Text}<div class="caption">
+  {block:Title}<a href="{Permalink}"><h1>{Title}</h1></a>{/block:Title}
+  {block:Body}
+  {block:NotReblog}{Body}{/block:NotReblog}
+  {block:RebloggedFrom}
+  {block:Reblogs}
+    {block:Date}<div class="reblogger">
+      <img class="reblog-avatar" src="{PortraitURL-64}">
+      <a class="reblog-username" href="{Permalink}">{Username}</a>
+    </div>{/block:Date}
+    {Body}
+  {/block:Reblogs}
+  {/block:RebloggedFrom}
+  {/block:Body}
+</div>{/block:Text}
+
+{block:Photo}
+  {LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}"/>{LinkCloseTag}
+{/block:Photo}
+
+{block:Photoset}
+  {block:Photos}
+  <img src="{PhotoURL-500}" width="{PhotoWidth-500}" height="{PhotoHeight-500}" />
+  {/block:Photos}
+{/block:Photoset}
+
+{block:Video}
+  {Video-500}
+{/block:Video}
+
+{block:Audio}
+  <div class="audio">
+    {block:AudioEmbed}{AudioEmbed}{/block:AudioEmbed}
+  </div>
+{/block:Audio}
+
+{block:Quote}
+  <h1>"{Quote}"</h1>
+  {block:Source}&#8212;&nbsp;&nbsp;{Source}{/block:Source}
+{/block:Quote}
+
+{block:Link}
+  <a href="{URL}"><h1>{Name} →</a></h1>
+{/block:Link}
+
+{block:Chat}
+  {block:Title}<h1>{Title}</h1>{/block:Title}
+  {block:Lines}
+    <div class="{Alt} user_{UserNumber}">
+      {block:Label}<b>{Label}</b>{/block:Label}&nbsp;{Line}
+    </div>
+  {/block:Lines}
+{/block:Chat}
+
+{block:Answer}
+  <p><b>{Asker}</b>: {Question}</p>
+  <p>{Answer}</p>
+{/block:Answer}
+
+{block:Caption}<div class="caption">
+  {block:NotReblog}{Caption}{/block:NotReblog}
+  {block:RebloggedFrom}{block:Reblogs}
+    <div class="reblogger">
+      <img class="reblog-avatar" src="{PortraitURL-64}">
+      <a class="reblog-username" href="{Permalink}">{Username}</a>
+    </div>
+    {Body}
+  {/block:Reblogs}{/block:RebloggedFrom}
+</div>{/block:Caption}
+
+{block:Date}{block:HasTags}
+  <footer>
+    {block:Tags}# <a href="{TagURL}">{Tag}</a>{/block:Tags}
+  </footer>
+{/block:HasTags}{/block:Date}
+
+{block:PermalinkPage}
+{block:NoteCount}
+{block:PostNotes}{PostNotes}{/block:PostNotes}
+{/block:NoteCount}
+{/block:PermalinkPage}
+
+{block:ContentSource}
+<!-- {SourceURL}
+{block:SourceLogo}<img src="{BlackLogoURL}"width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" />{/block:SourceLogo}
+{block:NoSourceLogo}{SourceLink}{/block:NoSourceLogo} -->
+{/block:ContentSource}
+<!--{block:NoRebloggedFrom}{block:RebloggedFrom}{ReblogParentName}{/block:RebloggedFrom}{/block:NoRebloggedFrom} -->
+
+</article>
+{/block:Posts}
+
+{block:Pagination}
+  <div id="pag">
+  {block:PreviousPage}
+    <a href="{PreviousPage}">previous page</a>
+  {/block:PreviousPage}
+  {block:NextPage}
+    <a href="{NextPage}">next page</a>
+  {/block:NextPage}
+  </div>
+  <br><br><br>
+{/block:Pagination}
+
+</main>
+
+</body>
+</html>
