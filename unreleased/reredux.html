@@ -28,7 +28,8 @@ npf photo fix by glenthemes.tumblr.com
 <meta name="color:gradient 1" content="#0000ff"/>
 <meta name="color:gradient 2" content="#000000"/>
 <meta name="color:foreground" content="#1a1a1a"/>
-<meta name="color:text" content="##494949"/>
+<meta name="color:text" content="#494949"/>
+<meta name="color:avi shadow" content="#000"/>
 <!--boolean options-->
 <meta name="if:gradient bg"/>
 <meta name="if:bg blur"/>
@@ -113,8 +114,8 @@ body {
 font-family:{text:font},sans-serif;
 font-size:{text:font size};
 line-height:22px;
-letter-spacing:0.75px;
 color:{color:text};
+font-weight:400;
 word-wrap:break-word;
 background:{color:background}; }
 
@@ -144,14 +145,11 @@ a[title] { text-decoration:none; }
 
 .captionbody a, .desc a { text-decoration:underline; }
 
-br+br { display:none; }
-br:last-child { display:none; }
-
 p { margin:10px 0; }
 
-p:last-child, h2:last-child { margin-bottom:0; }
-
 blockquote { padding-left:15px; border-left:solid 4px {color:text}; }
+
+p:last-child, h2:last-child { margin-bottom:0; }
 
 /* main container */
 
@@ -181,7 +179,7 @@ max-width:100%;
 {block:ifAviBorder}
   background:{color:foreground};
   border:5px solid {color:foreground};
-  box-shadow:0 0 5px #000;
+  box-shadow:0 0 5px {color:avi shadow};
 {/block:ifAviBorder} }
 
 #sidebar .desc {
@@ -192,7 +190,7 @@ text-align:{select:description align}; }
 #sidebar .links { margin-top:15px; }
 
 #sidebar .links a {
-padding:5px;
+padding:2.5px 5px;
 color:{color:text};
 background:{color:background};
 border-radius:2px; }
@@ -229,6 +227,8 @@ figure.tmblr-full img { max-width:100%; }
 .photoset-grid { margin:0; }
 [photoset-layout] { grid-gap:0px; }
 [photoset-layout] div { cursor:pointer; }
+
+.post-content div.npf_row, .post div.npf_row, body div.npf_row { margin-left:0!important; margin-right:0!important; }
 
 /* video ### */
 
@@ -463,7 +463,7 @@ left:1em; }
 {block:Date}
 <div class="footer">
   <div class="permalink">
-    <div class="date"><a href="{Permalink}"><b>{TimeAgo}</b></a>{block:RebloggedFrom}&nbsp;&nbsp;•&nbsp;&nbsp;<a href="{ReblogParentURL}" title="{ReblogParentName}">via</a> + <a href="{ReblogRootURL}" title="{ReblogRootName}">src</a>{/block:RebloggedFrom}</div>
+    <div class="date"><a href="{Permalink}"><b>{TimeAgo}</b></a>{block:RebloggedFrom}&nbsp;&nbsp;&nbsp;<a href="{ReblogParentURL}" title="{ReblogParentName}">via</a>&nbsp;&nbsp;<a href="{ReblogRootURL}" title="{ReblogRootName}">src</a>{/block:RebloggedFrom}</div>
     <Div class="reblog"><a href="{ReblogURL}">reblog</a></div>
   </div>
   {block:HasTags}<div class="tags">{block:Tags}<a href="{TagURL}">{Tag}</a>{/block:Tags}</div>{/block:HasTags}
@@ -476,6 +476,8 @@ left:1em; }
 {/block:PermalinkPage}
 
 {/block:Date}
+
+{block:ContentSource} <!-- {SourceURL}{block:SourceLogo}<img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" /> {/block:SourceLogo} {block:NoSourceLogo}{SourceLink}{/block:NoSourceLogo} --> {/block:ContentSource}
 
 </div>
 {/block:Posts}
